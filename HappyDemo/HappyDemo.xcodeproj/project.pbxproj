@@ -1,0 +1,371 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DE33430924F9675F007722EF /* HappyDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33430824F9675F007722EF /* HappyDemoApp.swift */; };
+		DE33430B24F9675F007722EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33430A24F9675F007722EF /* ContentView.swift */; };
+		DE33430D24F96762007722EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE33430C24F96762007722EF /* Assets.xcassets */; };
+		DE33431024F96762007722EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE33430F24F96762007722EF /* Preview Assets.xcassets */; };
+		DE33431F24F9679C007722EF /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = DE33431824F9679C007722EF /* emoji.json */; };
+		DE33432024F9679C007722EF /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33431924F9679C007722EF /* Emoji.swift */; };
+		DE33432124F9679C007722EF /* HappyPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33431B24F9679C007722EF /* HappyPanel.swift */; };
+		DE33432224F9679C007722EF /* EmojiGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33431C24F9679C007722EF /* EmojiGrid.swift */; };
+		DE33432324F9679C007722EF /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33431D24F9679C007722EF /* SearchBar.swift */; };
+		DE33432424F9679C007722EF /* EmojiResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33431E24F9679C007722EF /* EmojiResultList.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		DE33430524F9675F007722EF /* HappyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE33430824F9675F007722EF /* HappyDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyDemoApp.swift; sourceTree = "<group>"; };
+		DE33430A24F9675F007722EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		DE33430C24F96762007722EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DE33430F24F96762007722EF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DE33431124F96762007722EF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DE33431824F9679C007722EF /* emoji.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoji.json; sourceTree = "<group>"; };
+		DE33431924F9679C007722EF /* Emoji.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Emoji.swift; sourceTree = "<group>"; };
+		DE33431B24F9679C007722EF /* HappyPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HappyPanel.swift; sourceTree = "<group>"; };
+		DE33431C24F9679C007722EF /* EmojiGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiGrid.swift; sourceTree = "<group>"; };
+		DE33431D24F9679C007722EF /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		DE33431E24F9679C007722EF /* EmojiResultList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiResultList.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DE33430224F9675F007722EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DE3342FC24F9675F007722EF = {
+			isa = PBXGroup;
+			children = (
+				DE33430724F9675F007722EF /* HappyDemo */,
+				DE33430624F9675F007722EF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DE33430624F9675F007722EF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE33430524F9675F007722EF /* HappyDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DE33430724F9675F007722EF /* HappyDemo */ = {
+			isa = PBXGroup;
+			children = (
+				DE33431724F9679C007722EF /* Data */,
+				DE33431A24F9679C007722EF /* Source */,
+				DE33430824F9675F007722EF /* HappyDemoApp.swift */,
+				DE33430A24F9675F007722EF /* ContentView.swift */,
+				DE33430C24F96762007722EF /* Assets.xcassets */,
+				DE33431124F96762007722EF /* Info.plist */,
+				DE33430E24F96762007722EF /* Preview Content */,
+			);
+			path = HappyDemo;
+			sourceTree = "<group>";
+		};
+		DE33430E24F96762007722EF /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DE33430F24F96762007722EF /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DE33431724F9679C007722EF /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				DE33431824F9679C007722EF /* emoji.json */,
+				DE33431924F9679C007722EF /* Emoji.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		DE33431A24F9679C007722EF /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DE33431B24F9679C007722EF /* HappyPanel.swift */,
+				DE33431C24F9679C007722EF /* EmojiGrid.swift */,
+				DE33431D24F9679C007722EF /* SearchBar.swift */,
+				DE33431E24F9679C007722EF /* EmojiResultList.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DE33430424F9675F007722EF /* HappyDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DE33431424F96762007722EF /* Build configuration list for PBXNativeTarget "HappyDemo" */;
+			buildPhases = (
+				DE33430124F9675F007722EF /* Sources */,
+				DE33430224F9675F007722EF /* Frameworks */,
+				DE33430324F9675F007722EF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HappyDemo;
+			productName = HappyDemo;
+			productReference = DE33430524F9675F007722EF /* HappyDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DE3342FD24F9675F007722EF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					DE33430424F9675F007722EF = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = DE33430024F9675F007722EF /* Build configuration list for PBXProject "HappyDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DE3342FC24F9675F007722EF;
+			productRefGroup = DE33430624F9675F007722EF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DE33430424F9675F007722EF /* HappyDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DE33430324F9675F007722EF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE33431024F96762007722EF /* Preview Assets.xcassets in Resources */,
+				DE33431F24F9679C007722EF /* emoji.json in Resources */,
+				DE33430D24F96762007722EF /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DE33430124F9675F007722EF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE33432424F9679C007722EF /* EmojiResultList.swift in Sources */,
+				DE33432024F9679C007722EF /* Emoji.swift in Sources */,
+				DE33430B24F9675F007722EF /* ContentView.swift in Sources */,
+				DE33430924F9675F007722EF /* HappyDemoApp.swift in Sources */,
+				DE33432124F9679C007722EF /* HappyPanel.swift in Sources */,
+				DE33432224F9679C007722EF /* EmojiGrid.swift in Sources */,
+				DE33432324F9679C007722EF /* SearchBar.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		DE33431224F96762007722EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DE33431324F96762007722EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DE33431524F96762007722EF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyDemo/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HappyDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.HappyDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DE33431624F96762007722EF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"HappyDemo/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = HappyDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.HappyDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DE33430024F9675F007722EF /* Build configuration list for PBXProject "HappyDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE33431224F96762007722EF /* Debug */,
+				DE33431324F96762007722EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DE33431424F96762007722EF /* Build configuration list for PBXNativeTarget "HappyDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE33431524F96762007722EF /* Debug */,
+				DE33431624F96762007722EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DE3342FD24F9675F007722EF /* Project object */;
+}
