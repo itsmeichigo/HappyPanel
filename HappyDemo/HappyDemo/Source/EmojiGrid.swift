@@ -18,25 +18,33 @@ struct EmojiGrid: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text(title)
-                .foregroundColor(.gray)
-            
-            LazyVGrid(columns: columns) {
-                ForEach(items, id: \.emoji) { item in
-                    Button(action: {
-                        self.selection = item
-                        self.completionHandler()
-                    }) {
-                        Text(item.emoji)
-                            .font(.largeTitle)
+            Section(header: HeaderView(title: title)) {
+                LazyVGrid(columns: columns) {
+                    ForEach(items, id: \.emoji) { item in
+                        Button(action: {
+                            self.selection = item
+                            self.completionHandler()
+                        }) {
+                            Text(item.emoji)
+                                .font(.largeTitle)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .padding(.vertical, 4)
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.vertical, 4)
                 }
             }
         }
         .padding(.vertical, 16)
     }
+}
+
+struct HeaderView: View {
+  let title: String
+
+  var body: some View {
+    Text(title)
+        .foregroundColor(.gray)
+  }
 }
 
 struct EmojiGrid_Previews: PreviewProvider {

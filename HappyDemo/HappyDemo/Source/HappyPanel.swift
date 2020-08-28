@@ -41,6 +41,7 @@ struct HappyPanel: View {
             offsetY = Constants.halfOffset
             newOffsetY = offsetY
             isOpen = false
+            keyword = ""
         }
     }
 
