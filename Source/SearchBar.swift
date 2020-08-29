@@ -24,8 +24,7 @@ struct SearchBar: View {
                     if inFocus {
                         self.focusHandler()
                     }
-                })
-                    .font(.body)
+                }).font(.body)
             }
             .padding(8)
             

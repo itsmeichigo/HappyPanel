@@ -42,7 +42,7 @@ struct EmojiResultList: View {
 struct EmojiResultList_Previews: PreviewProvider {
     static var previews: some View {
         EmojiResultList(selection: .constant(nil),
-                        items: Array(EmojiFinder().allEmojis.prefix(5)),
+                        items: Array(EmojiStore().allEmojis.prefix(5)),
                         completionHandler: {})
     }
 }

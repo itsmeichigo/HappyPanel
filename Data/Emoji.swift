@@ -15,7 +15,7 @@ struct Emoji: Decodable {
     let tags: [String]
 }
 
-struct EmojiFinder {
+struct EmojiStore {
     let allEmojis: [Emoji]
     let allCategories: [String]
     let emojisByCategory: [String: [Emoji]]
