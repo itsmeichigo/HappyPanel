@@ -15,12 +15,14 @@ fileprivate enum Constants {
     
     static let screenHeight = UIScreen.main.bounds.size.height
     static let maxHeight: CGFloat = screenHeight - 24
-    static let midHeight: CGFloat = 400
+    static let midHeight: CGFloat = 360
     static let minHeight: CGFloat = 0
     
     static let halfOffset: CGFloat = maxHeight - midHeight
     static let fullOffset: CGFloat = 24
     static let hiddenOffset: CGFloat = screenHeight
+    
+    static let firstSectionTitle: String = "Smileys & Emotion"
 }
 
 struct HappyPanel: View {
@@ -32,7 +34,7 @@ struct HappyPanel: View {
     @State private var offsetY: CGFloat = Constants.halfOffset
     @State private var lastOffsetY: CGFloat = Constants.halfOffset
     @State private var isDraggingDown: Bool = false
-    @State private var currentCategory: String = "Smileys & Emotion"
+    @State private var currentCategory: String = Constants.firstSectionTitle
         
     private let columns: [GridItem] =
              Array(repeating: .init(.flexible()), count: 6)
@@ -46,10 +48,7 @@ struct HappyPanel: View {
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.7)
-                .edgesIgnoringSafeArea(.all)
-                .opacity(isOpen ? 1 : 0)
-                .animation(.easeIn)
+            self.dimmedBackground
             
             VStack {
                 self.indicator
@@ -63,17 +62,13 @@ struct HappyPanel: View {
                         })
                         .padding(16)
                         
-                        Color.gray
-                            .opacity(0.2)
-                            .frame(height: 1)
-                            .padding(.bottom, 16)
+                        self.separator
                         
                         ZStack {
                             self.emojiSections
-                            
+
                             if !keyword.isEmpty {
                                 self.emojiResults
-                                    .padding(.horizontal, 16)
                             }
                         }
                     }
@@ -91,6 +86,13 @@ struct HappyPanel: View {
         }
     }
     
+    private var dimmedBackground: some View {
+        Color.black.opacity(0.7)
+            .edgesIgnoringSafeArea(.all)
+            .opacity(isOpen ? 1 : 0)
+            .animation(.easeIn)
+    }
+    
     private var indicator: some View {
         Color.gray
             .frame(width: Constants.indicatorWidth,
@@ -98,18 +100,16 @@ struct HappyPanel: View {
             .clipShape(Capsule())
     }
     
+    private var separator: some View {
+        Color.gray
+            .opacity(0.2)
+            .frame(height: 1)
+            .padding(.bottom, 16)
+    }
+    
     private var emojiSections: some View {
         ScrollViewReader { proxy in
             List {
-                if !emojiStore.recentEmojis.isEmpty {
-                    EmojiSection(
-                        selection: $selectedEmoji,
-                        title: "Recent",
-                        items: emojiStore.recentEmojis,
-                        completionHandler: resetViews
-                    )
-                }
-                
                 ForEach(emojiStore.allCategories, id: \.self) { category in
                     EmojiSection(
                         selection: $selectedEmoji,
@@ -118,11 +118,11 @@ struct HappyPanel: View {
                         completionHandler: resetViews
                     )
                 }
-                .onChange(of: currentCategory) { target in
-//                    withAnimation {
-//                        proxy.scrollTo(target, anchor: .top)
-//                    }
-                }
+            }
+            .onChange(of: currentCategory) { target in
+//                withAnimation {
+//                    proxy.scrollTo(target, anchor: .top)
+//                }
             }
         }
     }
@@ -146,6 +146,7 @@ struct HappyPanel: View {
                     
                     VStack {
                         Text("No emoji results found for \"\(keyword)\"")
+                            .foregroundColor(.gray)
                         Spacer()
                     }
                     
@@ -158,6 +159,7 @@ struct HappyPanel: View {
                 )
             }
         }
+        .padding(.horizontal, 16)
     }
     
     private var panelDragGesture: some Gesture {

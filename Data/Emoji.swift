@@ -45,18 +45,6 @@ struct EmojiStore {
         }
         self.emojisByCategory = result
     }
-        
-    var recentEmojis: [Emoji] {
-        guard let prefs = UserDefaults(suiteName: "com.apple.EmojiPreferences"),
-              let defaults = prefs.dictionary(forKey: "EmojiDefaultsKey")?["EmojiRecentsDefaultsKey"] as? [String: Any],
-              let recents = defaults["RecentsKey"] as? [String] else {
-            return []
-        }
-        
-        return recents.compactMap { recent in
-            allEmojis.first(where: { $0.emoji == recent })
-        }
-    }
     
     func filteredEmojis(with keyword: String) -> [Emoji] {
         let lowercasedEmoji = keyword.lowercased()
