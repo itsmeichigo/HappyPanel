@@ -118,11 +118,9 @@ struct HappyPanel: View {
                         completionHandler: resetViews
                     )
                 }
-            }
-            .onChange(of: currentCategory) { target in
-//                withAnimation {
-//                    proxy.scrollTo(target, anchor: .top)
-//                }
+                .onChange(of: currentCategory) { target in
+                    proxy.scrollTo(target, anchor: .top)
+                }
             }
         }
     }

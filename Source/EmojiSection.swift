@@ -10,7 +10,7 @@ import SwiftUI
 struct EmojiSection: View {
     @Binding var selection: Emoji?
     var title: String
-    var items: [Emoji]
+    var items: [[Emoji]]
     var completionHandler: (() -> Void)
     
     private let columns: [GridItem] =
@@ -18,17 +18,22 @@ struct EmojiSection: View {
     
     var body: some View {
         Section(header: HeaderView(title: title)) {
-            LazyVGrid(columns: columns) {
-                ForEach(items, id: \.emoji) { item in
-                    Button(action: {
-                        self.selection = item
-                        self.completionHandler()
-                    }) {
-                        Text(item.emoji)
-                            .font(.largeTitle)
+            VStack(alignment: .leading) {
+                ForEach(items, id: \.self) { row in
+                    HStack {
+                        ForEach(row, id: \.emoji) { item in
+                            Button(action: {
+                                self.selection = item
+                                self.completionHandler()
+                            }) {
+                                Text(item.emoji)
+                                    .font(.largeTitle)
+                            }
+                            .buttonStyle(PlainButtonStyle())
+                            .padding(4)
+                        }
+                        
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(.vertical, 4)
                 }
             }
         }
@@ -64,9 +69,14 @@ struct FillAll: View {
 
 struct EmojiSection_Previews: PreviewProvider {
     static var previews: some View {
+        let store = EmojiStore()
+        let testItems = [
+            Array(store.allEmojis.prefix(7)),
+            Array(store.allEmojis.suffix(5)),
+        ]
         EmojiSection(selection: .constant(nil),
                      title: "Test",
-                     items: Array(EmojiStore().allEmojis.prefix(18)),
+                     items: testItems,
                      completionHandler: {})
     }
 }

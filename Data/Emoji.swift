@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Emoji: Decodable {
+struct Emoji: Decodable, Hashable {
     let emoji: String
     let category: String
     let description: String
@@ -18,7 +18,7 @@ struct Emoji: Decodable {
 struct EmojiStore {
     let allEmojis: [Emoji]
     let allCategories: [String]
-    let emojisByCategory: [String: [Emoji]]
+    let emojisByCategory: [String: [[Emoji]]]
     
     init() {
         guard let path = Bundle.main.path(forResource: "emoji", ofType: "json") else {
@@ -39,9 +39,10 @@ struct EmojiStore {
         
         self.allCategories = allEmojis.map { $0.category }.removeDuplicates()
         
-        var result: [String: [Emoji]] = [:]
+        var result: [String: [[Emoji]]] = [:]
         for category in allCategories {
-            result[category] = allEmojis.filter { $0.category == category }
+            let items = allEmojis.filter { $0.category == category }
+            result[category] = EmojiStore.getItemGroups(from: items, itemPerGroup: 7)
         }
         self.emojisByCategory = result
     }
@@ -53,6 +54,20 @@ struct EmojiStore {
             emoji.tags.first { $0.contains(lowercasedEmoji) } != nil
         }
     }
+    
+    static private func getItemGroups(from items: [Emoji], itemPerGroup: Int) -> [[Emoji]] {
+        var groups: [[Emoji]] = []
+        var itemsLeft: [Emoji] = items
+        
+        while !itemsLeft.isEmpty {
+            let prefix = Array(itemsLeft.prefix(itemPerGroup))
+            groups.append(prefix)
+            itemsLeft.removeSubrange(0..<prefix.count)
+        }
+        
+        return groups
+    }
+
 }
 
 extension Array where Element:Equatable {
