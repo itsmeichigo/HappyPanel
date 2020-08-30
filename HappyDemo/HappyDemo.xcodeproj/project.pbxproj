@@ -107,17 +107,33 @@
 			isa = PBXGroup;
 			children = (
 				DE60D08F24FA51DA00B6E957 /* HappyPanel.swift */,
+				DED45B9F24FBF736005C26DC /* Components */,
+				DED45BA124FBF74C005C26DC /* Utilities */,
+			);
+			name = Source;
+			path = ../../Source;
+			sourceTree = "<group>";
+		};
+		DED45B9F24FBF736005C26DC /* Components */ = {
+			isa = PBXGroup;
+			children = (
 				DED45B9224FBAB34005C26DC /* MainContent.swift */,
 				DE60D09024FA51DA00B6E957 /* EmojiSection.swift */,
 				DE60D09124FA51DA00B6E957 /* SearchBar.swift */,
 				DE60D09224FA51DA00B6E957 /* EmojiResultList.swift */,
 				DE60D09324FA51DA00B6E957 /* SectionIndexPicker.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		DED45BA124FBF74C005C26DC /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
 				DED45B9424FBAB59005C26DC /* Constants.swift */,
 				DED45B9A24FBC99D005C26DC /* Extensions.swift */,
 				DED45B9C24FBF262005C26DC /* SharedState.swift */,
 			);
-			name = Source;
-			path = ../../Source;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
