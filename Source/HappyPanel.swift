@@ -75,13 +75,10 @@ struct HappyPanel: View {
                 calculatedOffsetY = max(gesture.translation.height + lastOffsetY, Constants.fullOffset)
                 
                 // magnet
-                if isDraggingDown {
-                    if calculatedOffsetY >= Constants.halfOffset {
-                        calculatedOffsetY = Constants.hiddenOffset
-                        resetViews()
-                    } else {
-                        calculatedOffsetY = Constants.fullOffset
-                    }
+                if isDraggingDown,
+                   calculatedOffsetY >= Constants.halfOffset {
+                    calculatedOffsetY = Constants.hiddenOffset
+                    resetViews()
                 } else {
                     calculatedOffsetY = Constants.fullOffset
                 }
