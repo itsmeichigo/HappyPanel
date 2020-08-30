@@ -9,13 +9,12 @@
 import SwiftUI
 
 struct SearchBar: View {
-    @Binding var keyword: String
-    @Binding var isEditing: Bool
+    @EnvironmentObject var sharedState: SharedState
     
     var body: some View {
         HStack {
-            TextField("Search emoji", text: $keyword, onEditingChanged: { inFocus in
-                isEditing = inFocus
+            TextField("Search emoji", text: $sharedState.keyword, onEditingChanged: { inFocus in
+                sharedState.isSearching = inFocus
             })
             .font(.body)
             .padding(8)
@@ -29,9 +28,9 @@ struct SearchBar: View {
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 12)
              
-                    if !keyword.isEmpty {
+                    if !sharedState.keyword.isEmpty {
                         Button(action: {
-                            self.keyword = ""
+                            self.sharedState.keyword = ""
                         }) {
                             Image(systemName: "multiply.circle.fill")
                                 .foregroundColor(.gray)
@@ -41,10 +40,10 @@ struct SearchBar: View {
                 }
             )
             
-            if isEditing {
+            if sharedState.isSearching {
                 Button(action: {
-                    self.isEditing = false
-                    self.keyword = ""
+                    self.sharedState.isSearching = false
+                    self.sharedState.keyword = ""
                     UIApplication.shared.endEditing()
                 }) {
                     Text("Cancel")
@@ -59,6 +58,7 @@ struct SearchBar: View {
 
 struct SearchBar_Previews: PreviewProvider {
     static var previews: some View {
-        SearchBar(keyword: .constant(""), isEditing: .constant(false))
+        SearchBar()
+            .environmentObject(SharedState())
     }
 }

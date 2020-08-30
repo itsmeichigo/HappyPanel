@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct MainContent: View {
-    @Binding var selectedEmoji: Emoji?
-    @Binding var currentCategory: String
-    @Binding var isEditing: Bool
+    @EnvironmentObject var sharedState: SharedState
     
-    @State var keyword: String = ""
     var emojiStore = EmojiStore.shared
     
     var body: some View {
@@ -23,8 +20,9 @@ struct MainContent: View {
                 Color.white
                 
                 VStack(spacing: 0) {
-                    SearchBar(keyword: $keyword, isEditing: $isEditing)
+                    SearchBar()
                         .padding(16)
+                        .environmentObject(sharedState)
                     
                     self.separator
                     
@@ -32,7 +30,7 @@ struct MainContent: View {
                         self.emojiSections
                             .padding(.top, 16)
                         
-                        if isEditing {
+                        if sharedState.isSearching {
                             self.emojiResults
                         }
                     }
@@ -41,10 +39,10 @@ struct MainContent: View {
             .cornerRadius(8)
         }
         .edgesIgnoringSafeArea(.bottom)
-        .onChange(of: selectedEmoji) { value in
+        .onChange(of: sharedState.selectedEmoji) { value in
             if value != nil {
-                keyword = ""
-                isEditing = false
+                sharedState.keyword = ""
+                sharedState.isSearching = false
             }
         }
     }
@@ -66,12 +64,12 @@ struct MainContent: View {
             List {
                 ForEach(emojiStore.allCategories, id: \.self) { category in
                     EmojiSection(
-                        selection: $selectedEmoji,
                         title: category,
                         items: emojiStore.emojisByCategory[category]!
                     )
+                    .environmentObject(sharedState)
                 }
-                .onChange(of: currentCategory) { target in
+                .onChange(of: sharedState.currentCategory) { target in
                     proxy.scrollTo(target, anchor: .top)
                 }
             }
@@ -80,14 +78,14 @@ struct MainContent: View {
     
     private var emojiResults: some View {
         Group {
-            if keyword.isEmpty {
+            if sharedState.keyword.isEmpty {
                 EmptyView()
-            } else if emojiStore.filteredEmojis(with: keyword).isEmpty {
+            } else if emojiStore.filteredEmojis(with: sharedState.keyword).isEmpty {
                 ZStack {
                     Color.white
                     
                     VStack {
-                        Text("No emoji results found for \"\(keyword)\"")
+                        Text("No emoji results found for \"\(sharedState.keyword)\"")
                             .foregroundColor(.gray)
                         Spacer()
                     }
@@ -95,11 +93,9 @@ struct MainContent: View {
                 }
                 .padding(.horizontal, 16)
             } else {
-                EmojiResultList(
-                    selection: $selectedEmoji,
-                    items: emojiStore.filteredEmojis(with: keyword)
-                )
-                .padding(.horizontal, 16)
+                EmojiResultList(items: emojiStore.filteredEmojis(with: sharedState.keyword))
+                    .padding(.horizontal, 16)
+                    .environmentObject(sharedState)
             }
         }
     }
@@ -107,8 +103,7 @@ struct MainContent: View {
 
 struct MainContent_Previews: PreviewProvider {
     static var previews: some View {
-        MainContent(selectedEmoji: .constant(nil),
-                    currentCategory: .constant(Constants.firstSectionTitle),
-                    isEditing: .constant(false))
+        MainContent()
+            .environmentObject(SharedState())
     }
 }

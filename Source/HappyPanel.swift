@@ -16,36 +16,36 @@ struct HappyPanel: View {
     @State var calculatedOffsetY: CGFloat = Constants.halfOffset
     @State var lastOffsetY: CGFloat = Constants.halfOffset
     @State var isDraggingDown: Bool = false
-    @State var currentCategory: String = Constants.firstSectionTitle
-    @State var isSearching: Bool = false
-
+    
+    @ObservedObject var sharedState = SharedState()
+    
     var offsetY: CGFloat {
         guard isOpen else { return Constants.hiddenOffset}
-        return !isSearching ? calculatedOffsetY : Constants.fullOffset
+        return !sharedState.isSearching ? calculatedOffsetY : Constants.fullOffset
     }
     
     var body: some View {
         ZStack {
             self.dimmedBackground
             
-            MainContent(selectedEmoji: $selectedEmoji,
-                        currentCategory: $currentCategory,
-                        isEditing: $isSearching)
+            MainContent()
                 .offset(y: offsetY)
-                .animation(.interactiveSpring())
+                .animation(.spring())
                 .gesture(panelDragGesture)
                 .onChange(of: offsetY) { value in
                     if value == Constants.hiddenOffset {
                         resetViews()
                     }
                 }
-                .onChange(of: selectedEmoji) { value in
+                .onChange(of: sharedState.selectedEmoji) { value in
                     if value != nil {
+                        selectedEmoji = value
                         resetViews()
                     }
                 }
+                .environmentObject(sharedState)
             
-            if isOpen, !isDraggingDown, !isSearching {
+            if isOpen, !isDraggingDown, !sharedState.isSearching {
                 self.sectionPicker
             }
         }
@@ -62,10 +62,10 @@ struct HappyPanel: View {
         VStack {
             Spacer()
             
-            SectionIndexPicker(selectedSection: $currentCategory,
-                               sections: EmojiStore.shared.allCategories)
+            SectionIndexPicker(sections: EmojiStore.shared.allCategories)
                 .padding(.horizontal, 16)
                 .padding(.bottom, 8)
+                .environmentObject(sharedState)
         }
     }
     

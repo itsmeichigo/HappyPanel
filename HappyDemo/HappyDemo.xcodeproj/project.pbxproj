@@ -21,6 +21,7 @@
 		DED45B9324FBAB34005C26DC /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9224FBAB34005C26DC /* MainContent.swift */; };
 		DED45B9524FBAB59005C26DC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9424FBAB59005C26DC /* Constants.swift */; };
 		DED45B9B24FBC99D005C26DC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9A24FBC99D005C26DC /* Extensions.swift */; };
+		DED45B9D24FBF262005C26DC /* SharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9C24FBF262005C26DC /* SharedState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		DED45B9224FBAB34005C26DC /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
 		DED45B9424FBAB59005C26DC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DED45B9A24FBC99D005C26DC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		DED45B9C24FBF262005C26DC /* SharedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				DE60D09324FA51DA00B6E957 /* SectionIndexPicker.swift */,
 				DED45B9424FBAB59005C26DC /* Constants.swift */,
 				DED45B9A24FBC99D005C26DC /* Extensions.swift */,
+				DED45B9C24FBF262005C26DC /* SharedState.swift */,
 			);
 			name = Source;
 			path = ../../Source;
@@ -187,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DED45B9D24FBF262005C26DC /* SharedState.swift in Sources */,
 				DE60D09924FA51DA00B6E957 /* EmojiResultList.swift in Sources */,
 				DED45B9524FBAB59005C26DC /* Constants.swift in Sources */,
 				DE60D09724FA51DA00B6E957 /* EmojiSection.swift in Sources */,

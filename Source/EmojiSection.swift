@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct EmojiSection: View {
-    @Binding var selection: Emoji?
+    @EnvironmentObject var sharedState: SharedState
+    
     var title: String
     var items: [[Emoji]]
     
@@ -22,7 +23,7 @@ struct EmojiSection: View {
                     HStack {
                         ForEach(row, id: \.emoji) { item in
                             Button(action: {
-                                self.selection = item
+                                self.sharedState.selectedEmoji = item
                             }) {
                                 Text(item.emoji)
                                     .font(.largeTitle)
@@ -72,8 +73,8 @@ struct EmojiSection_Previews: PreviewProvider {
             Array(store.allEmojis.prefix(7)),
             Array(store.allEmojis.suffix(5)),
         ]
-        EmojiSection(selection: .constant(nil),
-                     title: "Test",
+        EmojiSection(title: "Test",
                      items: testItems)
+            .environmentObject(SharedState())
     }
 }

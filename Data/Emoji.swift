@@ -57,6 +57,25 @@ struct EmojiStore {
         }
     }
     
+    static func systemImageName(for section: String) -> String {
+        let systemName: String
+        switch section {
+        case "Recent": systemName = "clock"
+        case "Smileys & Emotion": systemName = "smiley"
+        case "People & Body": systemName = "person.2"
+        case "Animals & Nature": systemName = "tortoise"
+        case "Food & Drink": systemName = "heart"
+        case "Travel & Places": systemName = "car"
+        case "Activities": systemName = "gamecontroller"
+        case "Objects": systemName = "lightbulb"
+        case "Symbols": systemName = "hexagon"
+        case "Flags": systemName = "flag"
+        default: systemName = "questionmark"
+        }
+        
+        return systemName
+    }
+    
     static private func getItemGroups(from items: [Emoji], itemPerGroup: Int) -> [[Emoji]] {
         var groups: [[Emoji]] = []
         var itemsLeft: [Emoji] = items

@@ -8,38 +8,19 @@
 import SwiftUI
 
 struct SectionIndexPicker: View {
-    @Binding var selectedSection: String
+    @EnvironmentObject var sharedState: SharedState
     
     var sections: [String]
 
     var body: some View {
-        Picker(selection: $selectedSection, label: Text("Section"), content: {
+        Picker(selection: $sharedState.currentCategory, label: Text("Section"), content: {
             ForEach(sections, id: \.self) {
-                sectionImage(for: $0)
+                Image(systemName: EmojiStore.systemImageName(for: $0))
                     .tag($0)
             }
         })
         .pickerStyle(SegmentedPickerStyle())
         .background(Blur(style: .systemUltraThinMaterial).cornerRadius(8.0))
-    }
-    
-    private func sectionImage(for section: String) -> Image {
-        let systemName: String
-        switch section {
-        case "Recent": systemName = "clock"
-        case "Smileys & Emotion": systemName = "smiley"
-        case "People & Body": systemName = "person.2"
-        case "Animals & Nature": systemName = "tortoise"
-        case "Food & Drink": systemName = "heart"
-        case "Travel & Places": systemName = "car"
-        case "Activities": systemName = "gamecontroller"
-        case "Objects": systemName = "lightbulb"
-        case "Symbols": systemName = "hexagon"
-        case "Flags": systemName = "flag"
-        default: systemName = "questionmark"
-        }
-        
-        return Image(systemName: systemName)
     }
 }
 
@@ -57,7 +38,8 @@ struct Blur: UIViewRepresentable {
 
 struct SectionIndexPicker_Previews: PreviewProvider {
     static var previews: some View {
-        let sections = ["🐹", "🦊", "🐧", "🦁", "🐨"]
-        SectionIndexPicker(selectedSection: .constant(sections[0]), sections: sections)
+        let sections = ["Recent", "Smileys & Emotion", "People & Body", "Animals & Nature", "🐨"]
+        SectionIndexPicker(sections: sections)
+            .environmentObject(SharedState())
     }
 }

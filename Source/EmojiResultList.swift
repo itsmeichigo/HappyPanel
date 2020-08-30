@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct EmojiResultList: View {
-    @Binding var selection: Emoji?
+    @EnvironmentObject var sharedState: SharedState
+    
     var items: [Emoji]
     
     var body: some View {
@@ -16,7 +17,7 @@ struct EmojiResultList: View {
             LazyVStack(alignment: .leading) {
                 ForEach(items, id: \.emoji) { item in
                     Button(action: {
-                        self.selection = item
+                        self.sharedState.selectedEmoji = item
                     }) {
                         HStack {
                             Text(item.emoji)
@@ -39,7 +40,7 @@ struct EmojiResultList: View {
 
 struct EmojiResultList_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiResultList(selection: .constant(nil),
-                        items: Array(EmojiStore().allEmojis.prefix(5)))
+        EmojiResultList(items: Array(EmojiStore().allEmojis.prefix(5)))
+            .environmentObject(SharedState())
     }
 }
