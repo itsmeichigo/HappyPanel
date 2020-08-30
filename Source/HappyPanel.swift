@@ -32,11 +32,6 @@ struct HappyPanel: View {
                 .offset(y: offsetY)
                 .animation(.spring())
                 .gesture(panelDragGesture)
-                .onChange(of: offsetY) { value in
-                    if value == Constants.hiddenOffset {
-                        resetViews()
-                    }
-                }
                 .onChange(of: sharedState.selectedEmoji) { value in
                     if value != nil {
                         selectedEmoji = value
@@ -82,27 +77,26 @@ struct HappyPanel: View {
                 // magnet
                 if isDraggingDown {
                     if calculatedOffsetY >= Constants.halfOffset {
-                        calculatedOffsetY = Constants.halfOffset
-                        isOpen = false
+                        calculatedOffsetY = Constants.hiddenOffset
+                        resetViews()
                     } else {
                         calculatedOffsetY = Constants.fullOffset
-                        isDraggingDown = false
                     }
                 } else {
                     calculatedOffsetY = Constants.fullOffset
-                    isDraggingDown = false
                 }
                 
                 lastOffsetY = calculatedOffsetY
+                isDraggingDown = false
             }
     }
     
     private func resetViews() {
         UIApplication.shared.endEditing()
-        isOpen = false
         calculatedOffsetY = Constants.halfOffset
         lastOffsetY = calculatedOffsetY
-        isDraggingDown = false
+        isOpen = false
+        sharedState.resetState()
     }
 }
 

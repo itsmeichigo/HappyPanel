@@ -40,15 +40,15 @@ struct EmojiSection: View {
 }
 
 struct HeaderView: View {
-  let title: String
-
-  var body: some View {
-    Text(title)
-        .foregroundColor(.gray)
-        .font(.caption)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(FillAll(color: .white))
-  }
+    let title: String
+    
+    var body: some View {
+        Text(title)
+            .foregroundColor(.gray)
+            .font(.caption)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(FillAll(color: .white))
+    }
 }
 
 // Hack to override default list section header background color 🤬

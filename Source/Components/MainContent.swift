@@ -39,12 +39,6 @@ struct MainContent: View {
             .cornerRadius(8)
         }
         .edgesIgnoringSafeArea(.bottom)
-        .onChange(of: sharedState.selectedEmoji) { value in
-            if value != nil {
-                sharedState.keyword = ""
-                sharedState.isSearching = false
-            }
-        }
     }
     
     private var indicator: some View {
@@ -89,6 +83,7 @@ struct MainContent: View {
                             .foregroundColor(.gray)
                         Spacer()
                     }
+                    .padding(.top, 32)
                     
                 }
                 .padding(.horizontal, 16)

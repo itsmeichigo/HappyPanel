@@ -13,4 +13,10 @@ final class SharedState: ObservableObject {
     @Published var isSearching: Bool = false
     @Published var keyword: String = ""
     @Published var currentCategory: String = Constants.firstSectionTitle
+    
+    func resetState() {
+        isSearching = false
+        keyword = ""
+        currentCategory = Constants.firstSectionTitle
+    }
 }
