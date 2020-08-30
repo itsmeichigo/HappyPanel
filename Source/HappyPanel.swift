@@ -8,79 +8,44 @@
 
 import SwiftUI
 
-fileprivate enum Constants {
-    static let radius: CGFloat = 16
-    static let indicatorHeight: CGFloat = 6
-    static let indicatorWidth: CGFloat = 60
-    
-    static let screenHeight = UIScreen.main.bounds.size.height
-    static let maxHeight: CGFloat = screenHeight - 24
-    static let midHeight: CGFloat = 360
-    static let minHeight: CGFloat = 0
-    
-    static let halfOffset: CGFloat = maxHeight - midHeight
-    static let fullOffset: CGFloat = 24
-    static let hiddenOffset: CGFloat = screenHeight
-    
-    static let firstSectionTitle: String = "Smileys & Emotion"
-}
-
 struct HappyPanel: View {
     
-    @Binding var selectedEmoji: Emoji?
     @Binding var isOpen: Bool
+    @Binding var selectedEmoji: Emoji?
     
-    @State private var keyword: String = ""
-    @State private var offsetY: CGFloat = Constants.halfOffset
-    @State private var lastOffsetY: CGFloat = Constants.halfOffset
-    @State private var isDraggingDown: Bool = false
-    @State private var currentCategory: String = Constants.firstSectionTitle
-        
-    private let columns: [GridItem] =
-             Array(repeating: .init(.flexible()), count: 6)
-    private var emojiStore = EmojiStore()
+    @State var calculatedOffsetY: CGFloat = Constants.halfOffset
+    @State var lastOffsetY: CGFloat = Constants.halfOffset
+    @State var isDraggingDown: Bool = false
+    @State var currentCategory: String = Constants.firstSectionTitle
+    @State var isSearching: Bool = false
 
-    init(isOpen: Binding<Bool>,
-         selectedEmoji: Binding<Emoji?>) {
-        self._isOpen = isOpen
-        self._selectedEmoji = selectedEmoji
+    var offsetY: CGFloat {
+        guard isOpen else { return Constants.hiddenOffset}
+        return !isSearching ? calculatedOffsetY : Constants.fullOffset
     }
     
     var body: some View {
         ZStack {
             self.dimmedBackground
             
-            VStack {
-                self.indicator
-                
-                ZStack {
-                    Color.white
-                    
-                    VStack(spacing: 0) {
-                        SearchBar(keyword: $keyword, focusHandler: {
-                            self.offsetY = Constants.fullOffset
-                        })
-                        .padding(16)
-                        
-                        self.separator
-                        
-                        ZStack {
-                            self.emojiSections
-
-                            if !keyword.isEmpty {
-                                self.emojiResults
-                            }
-                        }
+            MainContent(selectedEmoji: $selectedEmoji,
+                        currentCategory: $currentCategory,
+                        isEditing: $isSearching)
+                .offset(y: offsetY)
+                .animation(.interactiveSpring())
+                .gesture(panelDragGesture)
+                .onChange(of: offsetY) { value in
+                    if value == Constants.hiddenOffset {
+                        resetViews()
                     }
                 }
-                .cornerRadius(Constants.radius)
-            }
-            .edgesIgnoringSafeArea(.bottom)
-            .offset(y: isOpen ? offsetY : Constants.hiddenOffset)
-            .animation(.interactiveSpring())
-            .gesture(panelDragGesture)
+                .onChange(of: selectedEmoji) { value in
+                    if value != nil {
+                        resetViews()
+                    }
+                }
             
-            if isOpen, !isDraggingDown, keyword.isEmpty {
+            if isOpen, !isDraggingDown, !isSearching {
                 self.sectionPicker
             }
         }
@@ -93,109 +58,51 @@ struct HappyPanel: View {
             .animation(.easeIn)
     }
     
-    private var indicator: some View {
-        Color.gray
-            .frame(width: Constants.indicatorWidth,
-                   height: Constants.indicatorHeight)
-            .clipShape(Capsule())
-    }
-    
-    private var separator: some View {
-        Color.gray
-            .opacity(0.2)
-            .frame(height: 1)
-            .padding(.bottom, 16)
-    }
-    
-    private var emojiSections: some View {
-        ScrollViewReader { proxy in
-            List {
-                ForEach(emojiStore.allCategories, id: \.self) { category in
-                    EmojiSection(
-                        selection: $selectedEmoji,
-                        title: category,
-                        items: emojiStore.emojisByCategory[category]!,
-                        completionHandler: resetViews
-                    )
-                }
-                .onChange(of: currentCategory) { target in
-                    proxy.scrollTo(target, anchor: .top)
-                }
-            }
-        }
-    }
-    
     private var sectionPicker: some View {
         VStack {
             Spacer()
             
             SectionIndexPicker(selectedSection: $currentCategory,
-                               sections: emojiStore.allCategories)
+                               sections: EmojiStore.shared.allCategories)
                 .padding(.horizontal, 16)
                 .padding(.bottom, 8)
         }
-    }
-    
-    private var emojiResults: some View {
-        Group {
-            if emojiStore.filteredEmojis(with: keyword).isEmpty {
-                ZStack {
-                    Color.white
-                    
-                    VStack {
-                        Text("No emoji results found for \"\(keyword)\"")
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }
-                    
-                }
-            } else {
-                EmojiResultList(
-                    selection: $selectedEmoji,
-                    items: emojiStore.filteredEmojis(with: keyword),
-                    completionHandler: resetViews
-                )
-            }
-        }
-        .padding(.horizontal, 16)
     }
     
     private var panelDragGesture: some Gesture {
         DragGesture()
             .onChanged { gesture in
                 UIApplication.shared.endEditing()
-                self.isDraggingDown = gesture.translation.height > 0
-                self.offsetY = max(gesture.translation.height + self.lastOffsetY, Constants.fullOffset)
+                isDraggingDown = gesture.translation.height > 0
+                calculatedOffsetY = max(gesture.translation.height + lastOffsetY, Constants.fullOffset)
             }
             .onEnded { gesture in
-                self.offsetY = max(gesture.translation.height + self.lastOffsetY, Constants.fullOffset)
+                calculatedOffsetY = max(gesture.translation.height + lastOffsetY, Constants.fullOffset)
                 
                 // magnet
-                if self.isDraggingDown {
-                    if self.offsetY >= Constants.halfOffset {
-                        self.offsetY = Constants.halfOffset
-                        self.isOpen = false
-                        self.resetViews()
+                if isDraggingDown {
+                    if calculatedOffsetY >= Constants.halfOffset {
+                        calculatedOffsetY = Constants.halfOffset
+                        isOpen = false
                     } else {
-                        self.offsetY = Constants.fullOffset
-                        self.isDraggingDown = false
+                        calculatedOffsetY = Constants.fullOffset
+                        isDraggingDown = false
                     }
                 } else {
-                    self.offsetY = Constants.fullOffset
-                    self.isDraggingDown = false
+                    calculatedOffsetY = Constants.fullOffset
+                    isDraggingDown = false
                 }
                 
-                self.lastOffsetY = self.offsetY
+                lastOffsetY = calculatedOffsetY
             }
     }
     
     private func resetViews() {
         UIApplication.shared.endEditing()
-        offsetY = Constants.halfOffset
-        lastOffsetY = offsetY
-        isDraggingDown = false
         isOpen = false
-        keyword = ""
+        calculatedOffsetY = Constants.halfOffset
+        lastOffsetY = calculatedOffsetY
+        isDraggingDown = false
     }
 }
 
@@ -203,12 +110,5 @@ struct HappyPanel_Previews: PreviewProvider {
     static var previews: some View {
         HappyPanel(isOpen: .constant(true),
                    selectedEmoji: .constant(nil))
-    }
-}
-
-// extension for keyboard to dismiss
-extension UIApplication {
-    func endEditing() {
-        windows.forEach { $0.endEditing(false) }
     }
 }

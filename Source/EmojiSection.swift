@@ -11,7 +11,6 @@ struct EmojiSection: View {
     @Binding var selection: Emoji?
     var title: String
     var items: [[Emoji]]
-    var completionHandler: (() -> Void)
     
     private let columns: [GridItem] =
              Array(repeating: .init(.flexible()), count: 6)
@@ -24,7 +23,6 @@ struct EmojiSection: View {
                         ForEach(row, id: \.emoji) { item in
                             Button(action: {
                                 self.selection = item
-                                self.completionHandler()
                             }) {
                                 Text(item.emoji)
                                     .font(.largeTitle)
@@ -76,7 +74,6 @@ struct EmojiSection_Previews: PreviewProvider {
         ]
         EmojiSection(selection: .constant(nil),
                      title: "Test",
-                     items: testItems,
-                     completionHandler: {})
+                     items: testItems)
     }
 }

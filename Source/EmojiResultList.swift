@@ -10,7 +10,6 @@ import SwiftUI
 struct EmojiResultList: View {
     @Binding var selection: Emoji?
     var items: [Emoji]
-    var completionHandler: (() -> Void)
     
     var body: some View {
         ScrollView {
@@ -18,7 +17,6 @@ struct EmojiResultList: View {
                 ForEach(items, id: \.emoji) { item in
                     Button(action: {
                         self.selection = item
-                        self.completionHandler()
                     }) {
                         HStack {
                             Text(item.emoji)
@@ -42,7 +40,6 @@ struct EmojiResultList: View {
 struct EmojiResultList_Previews: PreviewProvider {
     static var previews: some View {
         EmojiResultList(selection: .constant(nil),
-                        items: Array(EmojiStore().allEmojis.prefix(5)),
-                        completionHandler: {})
+                        items: Array(EmojiStore().allEmojis.prefix(5)))
     }
 }

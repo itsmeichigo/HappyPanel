@@ -20,6 +20,8 @@ struct EmojiStore {
     let allCategories: [String]
     let emojisByCategory: [String: [[Emoji]]]
     
+    static let shared = EmojiStore()
+    
     init() {
         guard let path = Bundle.main.path(forResource: "emoji", ofType: "json") else {
             self.allEmojis = []
