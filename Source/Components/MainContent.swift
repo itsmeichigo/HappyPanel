@@ -17,7 +17,7 @@ struct MainContent: View {
             self.indicator
             
             ZStack {
-                Color.white
+                Color(UIColor.systemBackground)
                 
                 VStack(spacing: 0) {
                     SearchBar()
@@ -90,7 +90,7 @@ struct MainContent: View {
                 EmptyView()
             } else if emojiStore.filteredEmojis(with: sharedState.keyword).isEmpty {
                 ZStack {
-                    Color.white
+                    Color(UIColor.systemBackground)
                     
                     VStack {
                         Text("No emoji results found for \"\(sharedState.keyword)\"")

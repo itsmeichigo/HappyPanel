@@ -31,7 +31,7 @@ struct EmojiResultList: View {
                 }
             }
         }
-        .background(Color.white)
+        .background(Color(UIColor.systemBackground))
         .gesture(DragGesture().onChanged { _ in
             UIApplication.shared.endEditing()
         })

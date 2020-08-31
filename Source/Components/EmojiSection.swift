@@ -47,20 +47,16 @@ struct HeaderView: View {
             .foregroundColor(.gray)
             .font(.caption)
             .frame(maxWidth: .infinity, alignment: .leading)
-            .background(FillAll(color: .white))
+            .background(filledBackground)
     }
-}
-
-// Hack to override default list section header background color 🤬
-struct FillAll: View {
-    let color: Color
-
-    var body: some View {
+    
+    var filledBackground: some View {
         GeometryReader { proxy in
-            self.color.frame(
-                width: proxy.size.width * 3,
-                height: proxy.size.height * 3
-            )
+            Color(UIColor.systemBackground)
+                .frame(
+                    width: proxy.size.width * 3,
+                    height: proxy.size.height * 3
+                )
         }
         .offset(x: -20, y: -20)
     }
