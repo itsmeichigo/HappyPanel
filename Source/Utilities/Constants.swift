@@ -16,6 +16,21 @@ enum Constants {
     static let halfOffset: CGFloat = maxHeight - midHeight
     static let fullOffset: CGFloat = 24
     static let hiddenOffset: CGFloat = screenHeight
+}
+
+enum SectionType: String, CaseIterable {
+    case recent = "Recent"
+    case smileys = "Smileys & Emotion"
+    case people = "People & Body"
+    case animals = "Animals & Nature"
+    case food = "Food & Drink"
+    case travel = "Travel & Places"
+    case activities = "Activities"
+    case objects = "Objects"
+    case symbols = "Symbols"
+    case flags = "Flags"
     
-    static let firstSectionTitle: String = "Smileys & Emotion"
+    static let allCategories: [String] = SectionType.allCases
+        .filter { $0 != .recent }
+        .map { $0.rawValue }
 }

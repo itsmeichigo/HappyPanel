@@ -27,14 +27,18 @@ struct HappyPanel: View {
     var body: some View {
         ZStack {
             self.dimmedBackground
+                .onTapGesture {
+                    resetViews()
+                }
             
             MainContent()
                 .offset(y: offsetY)
                 .animation(.spring())
                 .gesture(panelDragGesture)
                 .onChange(of: sharedState.selectedEmoji) { value in
-                    if value != nil {
+                    if let value = value {
                         selectedEmoji = value
+                        EmojiStore.saveRecentEmoji(value)
                         resetViews()
                     }
                 }
@@ -53,11 +57,18 @@ struct HappyPanel: View {
             .animation(.easeIn)
     }
     
+    private var displayedCategories: [String] {
+        if EmojiStore.fetchRecentListByGroups().isEmpty {
+            return SectionType.allCategories
+        }
+        return SectionType.allCases.map { $0.rawValue }
+    }
+    
     private var sectionPicker: some View {
         VStack {
             Spacer()
             
-            SectionIndexPicker(sections: EmojiStore.shared.allCategories)
+            SectionIndexPicker(sections: displayedCategories)
                 .padding(.horizontal, 16)
                 .padding(.bottom, 8)
                 .environmentObject(sharedState)

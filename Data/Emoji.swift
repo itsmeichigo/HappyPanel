@@ -17,15 +17,15 @@ struct Emoji: Decodable, Hashable {
 
 struct EmojiStore {
     let allEmojis: [Emoji]
-    let allCategories: [String]
     let emojisByCategory: [String: [[Emoji]]]
     
     static let shared = EmojiStore()
+    private static let recentEmojiKey: String = "HappyPanelRecentEmojis"
+    private static let itemPerGroup: Int = 7
     
     init() {
         guard let path = Bundle.main.path(forResource: "emoji", ofType: "json") else {
             self.allEmojis = []
-            self.allCategories = []
             self.emojisByCategory = [:]
             return
         }
@@ -39,12 +39,11 @@ struct EmojiStore {
             self.allEmojis = []
         }
         
-        self.allCategories = allEmojis.map { $0.category }.removeDuplicates()
         
         var result: [String: [[Emoji]]] = [:]
-        for category in allCategories {
+        for category in SectionType.allCategories {
             let items = allEmojis.filter { $0.category == category }
-            result[category] = EmojiStore.getItemGroups(from: items, itemPerGroup: 7)
+            result[category] = EmojiStore.getItemGroups(from: items)
         }
         self.emojisByCategory = result
     }
@@ -58,27 +57,47 @@ struct EmojiStore {
     }
     
     static func systemImageName(for section: String) -> String {
-        let systemName: String
-        switch section {
-        case "Recent": systemName = "clock"
-        case "Smileys & Emotion": systemName = "smiley"
-        case "People & Body": systemName = "person.2"
-        case "Animals & Nature": systemName = "tortoise"
-        case "Food & Drink": systemName = "heart"
-        case "Travel & Places": systemName = "car"
-        case "Activities": systemName = "gamecontroller"
-        case "Objects": systemName = "lightbulb"
-        case "Symbols": systemName = "hexagon"
-        case "Flags": systemName = "flag"
-        default: systemName = "questionmark"
+        guard let sectionType = SectionType(rawValue: section) else {
+            return "questionmark"
         }
         
-        return systemName
+        switch sectionType {
+        case .recent: return "clock"
+        case .smileys: return "smiley"
+        case .people: return "person.2"
+        case .animals: return "tortoise"
+        case .food: return "heart"
+        case .travel: return "car"
+        case .activities: return "gamecontroller"
+        case .objects: return "lightbulb"
+        case .symbols: return "hexagon"
+        case .flags: return "flag"
+        }
     }
     
-    static private func getItemGroups(from items: [Emoji], itemPerGroup: Int) -> [[Emoji]] {
-        var groups: [[Emoji]] = []
-        var itemsLeft: [Emoji] = items
+    static func saveRecentEmoji(_ item: Emoji) {
+        let userDefaults = UserDefaults.standard
+        var recentList: [String] = []
+        if let savedList = userDefaults.array(forKey: recentEmojiKey) as? [String] {
+            recentList = Array(
+                savedList
+                    .filter { $0 != item.emoji }
+                    .prefix(itemPerGroup * 3 - 1)
+            )
+        }
+        
+        recentList.insert(item.emoji, at: 0)
+        userDefaults.set(recentList, forKey: recentEmojiKey)
+    }
+    
+    static func fetchRecentListByGroups() -> [[String]] {
+        let savedList = (UserDefaults.standard.array(forKey: recentEmojiKey) as? [String]) ?? []
+        return getItemGroups(from: savedList)
+    }
+    
+    static private func getItemGroups<T>(from items: [T]) -> [[T]] {
+        var groups: [[T]] = []
+        var itemsLeft: [T] = items
         
         while !itemsLeft.isEmpty {
             let prefix = Array(itemsLeft.prefix(itemPerGroup))

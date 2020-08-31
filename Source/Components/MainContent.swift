@@ -56,12 +56,26 @@ struct MainContent: View {
     private var emojiSections: some View {
         ScrollViewReader { proxy in
             List {
-                ForEach(emojiStore.allCategories, id: \.self) { category in
-                    EmojiSection(
-                        title: category,
-                        items: emojiStore.emojisByCategory[category]!
-                    )
-                    .environmentObject(sharedState)
+                Group {
+                    if !EmojiStore.fetchRecentListByGroups().isEmpty {
+                        EmojiSection(
+                            title: SectionType.recent.rawValue,
+                            items: EmojiStore.fetchRecentListByGroups(),
+                            contentKeyPath: \.self) { emoji in
+                            guard let item = emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
+                            self.sharedState.selectedEmoji = item
+                        }
+                        .id(SectionType.recent.rawValue)
+                    }
+                    
+                    ForEach(SectionType.allCategories, id: \.self) { category in
+                        EmojiSection(
+                            title: category,
+                            items: emojiStore.emojisByCategory[category]!,
+                            contentKeyPath: \.emoji) {
+                            self.sharedState.selectedEmoji = $0
+                        }
+                    }
                 }
                 .onChange(of: sharedState.currentCategory) { target in
                     proxy.scrollTo(target, anchor: .top)

@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct EmojiSection: View {
-    @EnvironmentObject var sharedState: SharedState
-    
+struct EmojiSection<T: Hashable>: View {
     var title: String
-    var items: [[Emoji]]
+    var items: [[T]]
+    var contentKeyPath: KeyPath<T, String>
+    var completionHandler: (T) -> Void
     
     private let columns: [GridItem] =
              Array(repeating: .init(.flexible()), count: 6)
@@ -21,11 +21,11 @@ struct EmojiSection: View {
             VStack(alignment: .leading) {
                 ForEach(items, id: \.self) { row in
                     HStack {
-                        ForEach(row, id: \.emoji) { item in
+                        ForEach(row, id: contentKeyPath) { item in
                             Button(action: {
-                                self.sharedState.selectedEmoji = item
+                                completionHandler(item)
                             }) {
-                                Text(item.emoji)
+                                Text(item[keyPath: contentKeyPath])
                                     .font(.largeTitle)
                             }
                             .buttonStyle(PlainButtonStyle())
@@ -74,7 +74,8 @@ struct EmojiSection_Previews: PreviewProvider {
             Array(store.allEmojis.suffix(5)),
         ]
         EmojiSection(title: "Test",
-                     items: testItems)
-            .environmentObject(SharedState())
+                     items: testItems,
+                     contentKeyPath: \.emoji,
+                     completionHandler: { _ in })
     }
 }

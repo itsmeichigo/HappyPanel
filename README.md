@@ -10,7 +10,8 @@ Slack-like panel for emojis
 - [x] Section title picker to be able to navigate to correct sections
 - [ ] Section title picker to be updated when scrolling to respective sections
 - [ ] Keyboard-responsive UI
-- [ ] Show recently used emoji section on top
+- [x] Show recently used emoji section on top
+- [ ] Dark mode
 - [ ] Clean code
 
 <img src="https://github.com/itsmeichigo/HappyPanel/blob/master/screenshot.png?raw=true" width=400>

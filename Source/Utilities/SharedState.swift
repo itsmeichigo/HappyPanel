@@ -12,11 +12,16 @@ final class SharedState: ObservableObject {
     @Published var selectedEmoji: Emoji? = nil
     @Published var isSearching: Bool = false
     @Published var keyword: String = ""
-    @Published var currentCategory: String = Constants.firstSectionTitle
+    @Published var currentCategory: String = defaultCategory
     
     func resetState() {
         isSearching = false
         keyword = ""
-        currentCategory = Constants.firstSectionTitle
+        currentCategory = SharedState.defaultCategory
+    }
+    
+    private static var defaultCategory: String {
+        EmojiStore.fetchRecentListByGroups().isEmpty ?
+            SectionType.smileys.rawValue : SectionType.recent.rawValue
     }
 }
