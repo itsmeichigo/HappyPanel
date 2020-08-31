@@ -102,9 +102,10 @@ struct MainContent: View {
                 }
                 .padding(.horizontal, 16)
             } else {
-                EmojiResultList(items: emojiStore.filteredEmojis(with: sharedState.keyword))
-                    .padding(.horizontal, 16)
-                    .environmentObject(sharedState)
+                EmojiResultList(items: emojiStore.filteredEmojis(with: sharedState.keyword)) { item in
+                    sharedState.selectedEmoji = item
+                }
+                .padding(.horizontal, 16)
             }
         }
     }

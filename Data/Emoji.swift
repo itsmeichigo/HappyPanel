@@ -15,7 +15,7 @@ struct Emoji: Decodable, Hashable {
     let tags: [String]
 }
 
-struct EmojiStore {
+final class EmojiStore {
     let allEmojis: [Emoji]
     let emojisByCategory: [String: [[Emoji]]]
     
@@ -55,7 +55,9 @@ struct EmojiStore {
             emoji.tags.first { $0.contains(lowercasedEmoji) } != nil
         }
     }
-    
+}
+
+extension EmojiStore {
     static func systemImageName(for section: String) -> String {
         guard let sectionType = SectionType(rawValue: section) else {
             return "questionmark"
@@ -106,20 +108,5 @@ struct EmojiStore {
         }
         
         return groups
-    }
-
-}
-
-extension Array where Element:Equatable {
-    func removeDuplicates() -> [Element] {
-        var result = [Element]()
-
-        for value in self {
-            if result.contains(value) == false {
-                result.append(value)
-            }
-        }
-
-        return result
     }
 }
