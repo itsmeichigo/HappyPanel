@@ -58,7 +58,7 @@ struct HappyPanel: View {
     }
     
     private var displayedCategories: [String] {
-        if EmojiStore.fetchRecentListByGroups().isEmpty {
+        if EmojiStore.fetchRecentList().isEmpty {
             return SectionType.allCategories
         }
         return SectionType.allCases.map { $0.rawValue }

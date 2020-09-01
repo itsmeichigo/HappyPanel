@@ -28,7 +28,6 @@ struct MainContent: View {
                     
                     ZStack {
                         self.emojiSections
-                            .padding(.top, 16)
                         
                         if sharedState.isSearching {
                             self.emojiResults
@@ -57,10 +56,10 @@ struct MainContent: View {
         ScrollViewReader { proxy in
             List {
                 Group {
-                    if !EmojiStore.fetchRecentListByGroups().isEmpty {
+                    if !EmojiStore.fetchRecentList().isEmpty {
                         EmojiSection(
                             title: SectionType.recent.rawValue,
-                            items: EmojiStore.fetchRecentListByGroups(),
+                            items: EmojiStore.fetchRecentList(),
                             contentKeyPath: \.self) { emoji in
                             guard let item = emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
                             self.sharedState.selectedEmoji = item
@@ -80,6 +79,9 @@ struct MainContent: View {
                 .onChange(of: sharedState.currentCategory) { target in
                     proxy.scrollTo(target, anchor: .top)
                 }
+                
+                Color(UIColor.systemBackground)
+                    .frame(height: 24)
             }
         }
     }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EmojiSection<T: Hashable>: View {
     var title: String
-    var items: [[T]]
+    var items: [T]
     var contentKeyPath: KeyPath<T, String>
     var completionHandler: (T) -> Void
     
@@ -18,21 +18,16 @@ struct EmojiSection<T: Hashable>: View {
     
     var body: some View {
         Section(header: HeaderView(title: title)) {
-            VStack(alignment: .leading) {
-                ForEach(items, id: \.self) { row in
-                    HStack {
-                        ForEach(row, id: contentKeyPath) { item in
-                            Button(action: {
-                                completionHandler(item)
-                            }) {
-                                Text(item[keyPath: contentKeyPath])
-                                    .font(.largeTitle)
-                            }
-                            .buttonStyle(PlainButtonStyle())
-                            .padding(4)
-                        }
-                        
+            LazyVGrid(columns: columns) {
+                ForEach(items, id: contentKeyPath) { item in
+                    Button(action: {
+                        completionHandler(item)
+                    }) {
+                        Text(item[keyPath: contentKeyPath])
+                            .font(.largeTitle)
                     }
+                    .buttonStyle(PlainButtonStyle())
+                    .padding(4)
                 }
             }
         }
@@ -48,6 +43,7 @@ struct HeaderView: View {
             .font(.caption)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(filledBackground)
+            .padding(.top, 16)
     }
     
     var filledBackground: some View {
@@ -65,10 +61,7 @@ struct HeaderView: View {
 struct EmojiSection_Previews: PreviewProvider {
     static var previews: some View {
         let store = EmojiStore()
-        let testItems = [
-            Array(store.allEmojis.prefix(7)),
-            Array(store.allEmojis.suffix(5)),
-        ]
+        let testItems = Array(store.allEmojis.prefix(12))
         EmojiSection(title: "Test",
                      items: testItems,
                      contentKeyPath: \.emoji,

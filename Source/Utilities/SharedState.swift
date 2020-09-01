@@ -21,7 +21,7 @@ final class SharedState: ObservableObject {
     }
     
     private static var defaultCategory: String {
-        EmojiStore.fetchRecentListByGroups().isEmpty ?
+        EmojiStore.fetchRecentList().isEmpty ?
             SectionType.smileys.rawValue : SectionType.recent.rawValue
     }
 }

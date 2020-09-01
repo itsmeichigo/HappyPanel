@@ -17,7 +17,7 @@ struct Emoji: Decodable, Hashable {
 
 final class EmojiStore {
     let allEmojis: [Emoji]
-    let emojisByCategory: [String: [[Emoji]]]
+    let emojisByCategory: [String: [Emoji]]
     
     static let shared = EmojiStore()
     private static let recentEmojiKey: String = "HappyPanelRecentEmojis"
@@ -40,10 +40,9 @@ final class EmojiStore {
         }
         
         
-        var result: [String: [[Emoji]]] = [:]
+        var result: [String: [Emoji]] = [:]
         for category in SectionType.allCategories {
-            let items = allEmojis.filter { $0.category == category }
-            result[category] = EmojiStore.getItemGroups(from: items)
+            result[category] = allEmojis.filter { $0.category == category }
         }
         self.emojisByCategory = result
     }
@@ -92,21 +91,7 @@ extension EmojiStore {
         userDefaults.set(recentList, forKey: recentEmojiKey)
     }
     
-    static func fetchRecentListByGroups() -> [[String]] {
-        let savedList = (UserDefaults.standard.array(forKey: recentEmojiKey) as? [String]) ?? []
-        return getItemGroups(from: savedList)
-    }
-    
-    static private func getItemGroups<T>(from items: [T]) -> [[T]] {
-        var groups: [[T]] = []
-        var itemsLeft: [T] = items
-        
-        while !itemsLeft.isEmpty {
-            let prefix = Array(itemsLeft.prefix(itemPerGroup))
-            groups.append(prefix)
-            itemsLeft.removeSubrange(0..<prefix.count)
-        }
-        
-        return groups
+    static func fetchRecentList() -> [String] {
+        return (UserDefaults.standard.array(forKey: recentEmojiKey) as? [String]) ?? []
     }
 }
