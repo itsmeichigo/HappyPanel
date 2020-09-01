@@ -20,8 +20,17 @@ struct HappyPanel: View {
     @ObservedObject var sharedState = SharedState()
     
     var offsetY: CGFloat {
-        guard isOpen else { return Constants.hiddenOffset}
-        return !sharedState.isSearching ? calculatedOffsetY : Constants.fullOffset
+        guard isOpen else { return Constants.hiddenOffset }
+        if sharedState.isSearching {
+            DispatchQueue.main.async {
+                self.calculatedOffsetY = Constants.fullOffset
+                self.lastOffsetY = Constants.fullOffset
+            }
+            
+            return lastOffsetY
+        }
+        
+        return calculatedOffsetY
     }
     
     var body: some View {
