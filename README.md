@@ -27,7 +27,7 @@ Below is how I tried to solve the problem - more like a note on what I learned.
 * Search bar: essentially a text field with grey background color and search icon on the left. Search button should show up when the field is focused and disappear otherwise.
 * Emoji grid: a grid of buttons that returns the content to its parent when tapped. The grid can be built with a combination of VStack and HStack (which requires a 2-dimensional array), but SwiftUI 2 provides grid which is super helpful so I used LazyVGrid instead. This is a toy project, I don't care about users using iOS 13 anyway.
 * List with section headers containing the emoji grid. The cool thing about SwiftUI is that a lot of UI components are supported natively without much needed code and here's one of them: a `List` wrapping around a `Section` with header will give you a table view with sticky headers. This is way too convenient comparing to how I'd have had to implement the same thing with UIKit.
-* Search result rows for filtered emoji.
+* Search result rows for filtered emojis.
 * Search result list.
 * Main content view: containing all the above components.
 * Section title picker to navigate between sections. I want this to float above the main content view so it's not contained in the main content view.
