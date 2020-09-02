@@ -18,7 +18,7 @@ Slack-like panel for emojis - starring SwiftUI 🙃
 
 ## Discussions
 
-The point of this project is to learn SwiftUI and make use of its declarative syntax to build a complicated control with gestures and animation. Because the biggest motivation for me to learn something new is to be able to make something beautiful and performant.
+The point of this project is to learn SwiftUI and make use of its declarative syntax to build a complicated control with gestures and animations in a few lines of code. Because the biggest motivation for me to learn something new is to be able to make something beautiful and performant.
 
 Below is how I tried to solve the problem - more like a note on what I learned.
 
