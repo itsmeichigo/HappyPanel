@@ -22,7 +22,7 @@ The point of this project is to learn SwiftUI and make use of its declarative sy
 
 Below is how I tried to solve the problem - more like a note on what I learned.
 
-### Start out with the smallest components first
+### Starting out with the smallest components first
 
 * Search bar: essentially a text field with grey background color and search icon on the left. Search button should show up when the field is focused and disappear otherwise.
 * Emoji grid: a grid of buttons that returns the content to its parent when tapped. The grid can be built with a combination of VStack and HStack (which requires a 2-dimensional array), but SwiftUI 2 provides grid which is super helpful so I used LazyVGrid instead. This is a toy project, I don't care about users using iOS 13 anyway.
@@ -33,7 +33,7 @@ Below is how I tried to solve the problem - more like a note on what I learned.
 * Section title picker to navigate between sections. I want this to float above the main content view so it's not contained in the main content view.
 * Main panel: containing a dimmed background, the main content view and the section title picker.
 
-### Navigate between sections
+### Navigating between sections
 
 With the help of `ScrollViewReader` and `ScrollViewProxy`, navigating to a desired section of a list is so easy with a simple `scrollTo(_ id:)` function. The problem is I had to learn how to use it the hard way with very much frustration involved. 
 
