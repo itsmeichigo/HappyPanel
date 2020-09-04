@@ -14,27 +14,27 @@ struct MainContent: View {
     
     var body: some View {
         VStack {
-            self.indicator
             
-            ZStack {
-                Color(UIColor.systemBackground)
+            #if os(iOS)
+            self.indicator
+            #endif
+            
+            VStack(spacing: 0) {
+                SearchBar()
+                    .padding(16)
+                    .environmentObject(sharedState)
                 
-                VStack(spacing: 0) {
-                    SearchBar()
-                        .padding(16)
-                        .environmentObject(sharedState)
+                self.separator
+                
+                ZStack {
+                    self.emojiSections
                     
-                    self.separator
-                    
-                    ZStack {
-                        self.emojiSections
-                        
-                        if sharedState.isSearching || !sharedState.keyword.isEmpty {
-                            self.emojiResults
-                        }
+                    if sharedState.isSearching || !sharedState.keyword.isEmpty {
+                        self.emojiResults
                     }
                 }
             }
+            .background(Color(UIColor.systemBackground))
             .cornerRadius(8)
         }
         .edgesIgnoringSafeArea(.bottom)

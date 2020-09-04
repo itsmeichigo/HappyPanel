@@ -35,10 +35,6 @@ struct HappyPanel: View {
     
     var body: some View {
         ZStack {
-            self.dimmedBackground
-                .onTapGesture {
-                    resetViews()
-                }
             
             MainContent()
                 .offset(y: offsetY)
@@ -52,6 +48,8 @@ struct HappyPanel: View {
                     }
                 }
                 .environmentObject(sharedState)
+                .edgesIgnoringSafeArea(.bottom)
+                .background(dimmedBackground)
             
             if isOpen, !isDraggingDown, !sharedState.isSearching, sharedState.keyword.isEmpty {
                 self.sectionPicker
@@ -64,6 +62,9 @@ struct HappyPanel: View {
             .edgesIgnoringSafeArea(.all)
             .opacity(isOpen ? 1 : 0)
             .animation(.easeIn)
+            .onTapGesture {
+                resetViews()
+            }
     }
     
     private var displayedCategories: [String] {
