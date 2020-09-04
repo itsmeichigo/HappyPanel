@@ -29,7 +29,7 @@ struct MainContent: View {
                     ZStack {
                         self.emojiSections
                         
-                        if sharedState.isSearching {
+                        if sharedState.isSearching || !sharedState.keyword.isEmpty {
                             self.emojiResults
                         }
                     }

@@ -53,7 +53,7 @@ struct HappyPanel: View {
                 }
                 .environmentObject(sharedState)
             
-            if isOpen, !isDraggingDown, !sharedState.isSearching {
+            if isOpen, !isDraggingDown, !sharedState.isSearching, sharedState.keyword.isEmpty {
                 self.sectionPicker
             }
         }
