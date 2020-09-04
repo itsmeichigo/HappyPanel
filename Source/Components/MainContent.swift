@@ -91,23 +91,26 @@ struct MainContent: View {
             if sharedState.keyword.isEmpty {
                 EmptyView()
             } else if emojiStore.filteredEmojis(with: sharedState.keyword).isEmpty {
-                ZStack {
-                    Color(UIColor.systemBackground)
-                    
-                    VStack {
-                        Text("No emoji results found for \"\(sharedState.keyword)\"")
-                            .foregroundColor(.gray)
-                        Spacer()
-                    }
-                    .padding(.top, 32)
-                    
+                
+                VStack {
+                    Text("No emoji results found for \"\(sharedState.keyword)\"")
+                        .foregroundColor(.gray)
+                    Spacer()
                 }
-                .padding(.horizontal, 16)
+                .padding(.top, 32)
+                .frame(maxWidth: .infinity, alignment: .center)
+                .background(Color(UIColor.systemBackground))
+                
             } else {
-                EmojiResultList(items: emojiStore.filteredEmojis(with: sharedState.keyword)) { item in
-                    sharedState.selectedEmoji = item
+                List {
+                    EmojiSection(
+                        title: "Search Results",
+                        items: emojiStore.filteredEmojis(with: sharedState.keyword),
+                        contentKeyPath: \.emoji) {
+                        self.sharedState.selectedEmoji = $0
+                    }
+                    .background(Color(UIColor.systemBackground))
                 }
-                .padding(.horizontal, 16)
             }
         }
     }
