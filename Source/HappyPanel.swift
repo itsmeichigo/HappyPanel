@@ -21,7 +21,10 @@ struct HappyPanel: View {
     
     var offsetY: CGFloat {
         guard isOpen else { return Constants.hiddenOffset }
-        if sharedState.isSearching {
+        let shouldToggleFromHalfState = sharedState.currentCategory != SharedState.defaultCategory &&
+            lastOffsetY == Constants.halfOffset
+        
+        if sharedState.isSearching || shouldToggleFromHalfState {
             DispatchQueue.main.async {
                 self.calculatedOffsetY = Constants.fullOffset
                 self.lastOffsetY = Constants.fullOffset

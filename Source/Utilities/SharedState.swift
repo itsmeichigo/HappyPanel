@@ -20,7 +20,7 @@ final class SharedState: ObservableObject {
         currentCategory = SharedState.defaultCategory
     }
     
-    private static var defaultCategory: String {
+    static var defaultCategory: String {
         EmojiStore.fetchRecentList().isEmpty ?
             SectionType.smileys.rawValue : SectionType.recent.rawValue
     }
