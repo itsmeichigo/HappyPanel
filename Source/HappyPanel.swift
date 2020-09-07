@@ -72,7 +72,7 @@ struct HappyPanel: View {
     
     private var displayedCategories: [String] {
         if EmojiStore.fetchRecentList().isEmpty {
-            return SectionType.allCategories
+            return SectionType.defaultCategories.map { $0.rawValue } 
         }
         return SectionType.allCases.map { $0.rawValue }
     }

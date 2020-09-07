@@ -41,8 +41,8 @@ final class EmojiStore {
         
         
         var result: [String: [Emoji]] = [:]
-        for category in SectionType.allCategories {
-            result[category] = allEmojis.filter { $0.category == category }
+        for category in SectionType.defaultCategories {
+            result[category.rawValue] = allEmojis.filter { $0.category == category.rawValue }
         }
         self.emojisByCategory = result
     }
@@ -95,3 +95,20 @@ extension EmojiStore {
         return (UserDefaults.standard.array(forKey: recentEmojiKey) as? [String]) ?? []
     }
 }
+
+enum SectionType: String, CaseIterable {
+    case recent = "Recent"
+    case smileys = "Smileys & Emotion"
+    case people = "People & Body"
+    case animals = "Animals & Nature"
+    case food = "Food & Drink"
+    case travel = "Travel & Places"
+    case activities = "Activities"
+    case objects = "Objects"
+    case symbols = "Symbols"
+    case flags = "Flags"
+    
+    static let defaultCategories: [SectionType] = SectionType.allCases
+        .filter { $0 != .recent }
+}
+

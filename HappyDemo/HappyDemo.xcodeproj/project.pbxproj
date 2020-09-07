@@ -16,12 +16,24 @@
 		DE60D09624FA51DA00B6E957 /* HappyPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D08F24FA51DA00B6E957 /* HappyPanel.swift */; };
 		DE60D09724FA51DA00B6E957 /* EmojiSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D09024FA51DA00B6E957 /* EmojiSection.swift */; };
 		DE60D09824FA51DA00B6E957 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D09124FA51DA00B6E957 /* SearchBar.swift */; };
-		DE60D09924FA51DA00B6E957 /* EmojiResultList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D09224FA51DA00B6E957 /* EmojiResultList.swift */; };
 		DE60D09A24FA51DA00B6E957 /* SectionIndexPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D09324FA51DA00B6E957 /* SectionIndexPicker.swift */; };
 		DED45B9324FBAB34005C26DC /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9224FBAB34005C26DC /* MainContent.swift */; };
 		DED45B9524FBAB59005C26DC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9424FBAB59005C26DC /* Constants.swift */; };
 		DED45B9B24FBC99D005C26DC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9A24FBC99D005C26DC /* Extensions.swift */; };
 		DED45B9D24FBF262005C26DC /* SharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9C24FBF262005C26DC /* SharedState.swift */; };
+		DEDF6E83250680D1008938CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E82250680D1008938CB /* AppDelegate.swift */; };
+		DEDF6E87250680D3008938CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6E86250680D3008938CB /* Assets.xcassets */; };
+		DEDF6E8A250680D3008938CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6E89250680D3008938CB /* Preview Assets.xcassets */; };
+		DEDF6E8D250680D3008938CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6E8B250680D3008938CB /* Main.storyboard */; };
+		DEDF6E9325068857008938CB /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D08D24FA51DA00B6E957 /* Emoji.swift */; };
+		DEDF6E942506885B008938CB /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = DE60D08C24FA51DA00B6E957 /* emoji.json */; };
+		DEDF6E962506888C008938CB /* SharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9C24FBF262005C26DC /* SharedState.swift */; };
+		DEDF6E9725068946008938CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9A24FBC99D005C26DC /* Extensions.swift */; };
+		DEDF6E9A25068A6C008938CB /* EmojiPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E9925068A6C008938CB /* EmojiPanel.swift */; };
+		DEDF6E9C25068AAC008938CB /* EmojiGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E9B25068AAC008938CB /* EmojiGrid.swift */; };
+		DEDF6E9E25068B0F008938CB /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E9D25068B0F008938CB /* SectionHeader.swift */; };
+		DEDF6E9F25068B0F008938CB /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E9D25068B0F008938CB /* SectionHeader.swift */; };
+		DEDF6EA2250690AB008938CB /* StatusItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6EA0250690AB008938CB /* StatusItemManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,16 +48,33 @@
 		DE60D08F24FA51DA00B6E957 /* HappyPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HappyPanel.swift; sourceTree = "<group>"; };
 		DE60D09024FA51DA00B6E957 /* EmojiSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiSection.swift; sourceTree = "<group>"; };
 		DE60D09124FA51DA00B6E957 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		DE60D09224FA51DA00B6E957 /* EmojiResultList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiResultList.swift; sourceTree = "<group>"; };
 		DE60D09324FA51DA00B6E957 /* SectionIndexPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionIndexPicker.swift; sourceTree = "<group>"; };
 		DED45B9224FBAB34005C26DC /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
 		DED45B9424FBAB59005C26DC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DED45B9A24FBC99D005C26DC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DED45B9C24FBF262005C26DC /* SharedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedState.swift; sourceTree = "<group>"; };
+		DEDF6E80250680D1008938CB /* Peachy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peachy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEDF6E82250680D1008938CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DEDF6E86250680D3008938CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DEDF6E89250680D3008938CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DEDF6E8C250680D3008938CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DEDF6E8E250680D3008938CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEDF6E8F250680D3008938CB /* Peachy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peachy.entitlements; sourceTree = "<group>"; };
+		DEDF6E9925068A6C008938CB /* EmojiPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPanel.swift; sourceTree = "<group>"; };
+		DEDF6E9B25068AAC008938CB /* EmojiGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGrid.swift; sourceTree = "<group>"; };
+		DEDF6E9D25068B0F008938CB /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
+		DEDF6EA0250690AB008938CB /* StatusItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		DE33430224F9675F007722EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEDF6E7D250680D1008938CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -59,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				DE33430724F9675F007722EF /* HappyDemo */,
+				DEDF6E81250680D1008938CB /* Peachy */,
 				DE33430624F9675F007722EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				DE33430524F9675F007722EF /* HappyDemo.app */,
+				DEDF6E80250680D1008938CB /* Peachy.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,9 +149,9 @@
 			isa = PBXGroup;
 			children = (
 				DED45B9224FBAB34005C26DC /* MainContent.swift */,
+				DEDF6E9D25068B0F008938CB /* SectionHeader.swift */,
 				DE60D09024FA51DA00B6E957 /* EmojiSection.swift */,
 				DE60D09124FA51DA00B6E957 /* SearchBar.swift */,
-				DE60D09224FA51DA00B6E957 /* EmojiResultList.swift */,
 				DE60D09324FA51DA00B6E957 /* SectionIndexPicker.swift */,
 			);
 			path = Components;
@@ -134,6 +165,38 @@
 				DED45B9C24FBF262005C26DC /* SharedState.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		DEDF6E81250680D1008938CB /* Peachy */ = {
+			isa = PBXGroup;
+			children = (
+				DEDF6E9825068A48008938CB /* Components */,
+				DEDF6E82250680D1008938CB /* AppDelegate.swift */,
+				DEDF6EA0250690AB008938CB /* StatusItemManager.swift */,
+				DEDF6E86250680D3008938CB /* Assets.xcassets */,
+				DEDF6E8B250680D3008938CB /* Main.storyboard */,
+				DEDF6E8E250680D3008938CB /* Info.plist */,
+				DEDF6E8F250680D3008938CB /* Peachy.entitlements */,
+				DEDF6E88250680D3008938CB /* Preview Content */,
+			);
+			path = Peachy;
+			sourceTree = "<group>";
+		};
+		DEDF6E88250680D3008938CB /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				DEDF6E89250680D3008938CB /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		DEDF6E9825068A48008938CB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				DEDF6E9925068A6C008938CB /* EmojiPanel.swift */,
+				DEDF6E9B25068AAC008938CB /* EmojiGrid.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +219,23 @@
 			productReference = DE33430524F9675F007722EF /* HappyDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DEDF6E7F250680D1008938CB /* Peachy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEDF6E92250680D3008938CB /* Build configuration list for PBXNativeTarget "Peachy" */;
+			buildPhases = (
+				DEDF6E7C250680D1008938CB /* Sources */,
+				DEDF6E7D250680D1008938CB /* Frameworks */,
+				DEDF6E7E250680D1008938CB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Peachy;
+			productName = Peachy;
+			productReference = DEDF6E80250680D1008938CB /* Peachy.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -166,6 +246,9 @@
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					DE33430424F9675F007722EF = {
+						CreatedOnToolsVersion = 12.0;
+					};
+					DEDF6E7F250680D1008938CB = {
 						CreatedOnToolsVersion = 12.0;
 					};
 				};
@@ -184,6 +267,7 @@
 			projectRoot = "";
 			targets = (
 				DE33430424F9675F007722EF /* HappyDemo */,
+				DEDF6E7F250680D1008938CB /* Peachy */,
 			);
 		};
 /* End PBXProject section */
@@ -199,6 +283,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEDF6E7E250680D1008938CB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEDF6E8D250680D3008938CB /* Main.storyboard in Resources */,
+				DEDF6E8A250680D3008938CB /* Preview Assets.xcassets in Resources */,
+				DEDF6E942506885B008938CB /* emoji.json in Resources */,
+				DEDF6E87250680D3008938CB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -207,7 +302,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DED45B9D24FBF262005C26DC /* SharedState.swift in Sources */,
-				DE60D09924FA51DA00B6E957 /* EmojiResultList.swift in Sources */,
 				DED45B9524FBAB59005C26DC /* Constants.swift in Sources */,
 				DE60D09724FA51DA00B6E957 /* EmojiSection.swift in Sources */,
 				DE60D09524FA51DA00B6E957 /* Emoji.swift in Sources */,
@@ -218,10 +312,37 @@
 				DE33430924F9675F007722EF /* HappyDemoApp.swift in Sources */,
 				DE60D09A24FA51DA00B6E957 /* SectionIndexPicker.swift in Sources */,
 				DE60D09824FA51DA00B6E957 /* SearchBar.swift in Sources */,
+				DEDF6E9E25068B0F008938CB /* SectionHeader.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEDF6E7C250680D1008938CB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEDF6E9725068946008938CB /* Extensions.swift in Sources */,
+				DEDF6E9325068857008938CB /* Emoji.swift in Sources */,
+				DEDF6E9C25068AAC008938CB /* EmojiGrid.swift in Sources */,
+				DEDF6EA2250690AB008938CB /* StatusItemManager.swift in Sources */,
+				DEDF6E9F25068B0F008938CB /* SectionHeader.swift in Sources */,
+				DEDF6E9A25068A6C008938CB /* EmojiPanel.swift in Sources */,
+				DEDF6E962506888C008938CB /* SharedState.swift in Sources */,
+				DEDF6E83250680D1008938CB /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		DEDF6E8B250680D3008938CB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEDF6E8C250680D3008938CB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DE33431224F96762007722EF /* Debug */ = {
@@ -382,6 +503,52 @@
 			};
 			name = Release;
 		};
+		DEDF6E90250680D3008938CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Peachy/Peachy.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Peachy/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Peachy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.Peachy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		DEDF6E91250680D3008938CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Peachy/Peachy.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"Peachy/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = Peachy/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.Peachy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -399,6 +566,15 @@
 			buildConfigurations = (
 				DE33431524F96762007722EF /* Debug */,
 				DE33431624F96762007722EF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEDF6E92250680D3008938CB /* Build configuration list for PBXNativeTarget "Peachy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEDF6E90250680D3008938CB /* Debug */,
+				DEDF6E91250680D3008938CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

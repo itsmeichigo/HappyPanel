@@ -17,7 +17,7 @@ struct EmojiSection<T: Hashable>: View {
              Array(repeating: .init(.flexible()), count: 6)
     
     var body: some View {
-        Section(header: HeaderView(title: title)) {
+        Section(header: SectionHeader(title: title)) {
             LazyVGrid(columns: columns) {
                 ForEach(items, id: contentKeyPath) { item in
                     Button(action: {
@@ -31,30 +31,6 @@ struct EmojiSection<T: Hashable>: View {
                 }
             }
         }
-    }
-}
-
-struct HeaderView: View {
-    let title: String
-    
-    var body: some View {
-        Text(title)
-            .foregroundColor(.gray)
-            .font(.caption)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(filledBackground)
-            .padding(.top, 16)
-    }
-    
-    var filledBackground: some View {
-        GeometryReader { proxy in
-            Color(UIColor.systemBackground)
-                .frame(
-                    width: proxy.size.width * 3,
-                    height: proxy.size.height * 3
-                )
-        }
-        .offset(x: -20, y: -20)
     }
 }
 

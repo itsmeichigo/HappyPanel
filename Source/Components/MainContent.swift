@@ -34,7 +34,7 @@ struct MainContent: View {
                     }
                 }
             }
-            .background(Color(UIColor.systemBackground))
+            .background(Color.background)
             .cornerRadius(8)
         }
         .edgesIgnoringSafeArea(.bottom)
@@ -67,7 +67,7 @@ struct MainContent: View {
                         .id(SectionType.recent.rawValue)
                     }
                     
-                    ForEach(SectionType.allCategories, id: \.self) { category in
+                    ForEach(SectionType.defaultCategories.map { $0.rawValue }, id: \.self) { category in
                         EmojiSection(
                             title: category,
                             items: emojiStore.emojisByCategory[category]!,
@@ -80,7 +80,7 @@ struct MainContent: View {
                     proxy.scrollTo(target, anchor: .top)
                 }
                 
-                Color(UIColor.systemBackground)
+                Color.background
                     .frame(height: 24)
             }
         }
@@ -99,7 +99,7 @@ struct MainContent: View {
                 }
                 .padding(.top, 32)
                 .frame(maxWidth: .infinity, alignment: .center)
-                .background(Color(UIColor.systemBackground))
+                .background(Color.background)
                 
             } else {
                 List {
@@ -109,7 +109,7 @@ struct MainContent: View {
                         contentKeyPath: \.emoji) {
                         self.sharedState.selectedEmoji = $0
                     }
-                    .background(Color(UIColor.systemBackground))
+                    .background(Color.background)
                 }
             }
         }
