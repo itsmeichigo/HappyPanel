@@ -26,9 +26,13 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>LSUIElement</key>
+	<key>NSSupportsAutomaticTermination</key>
+	<true/>
+	<key>NSSupportsSuddenTermination</key>
 	<true/>
 	<key>NSAppleEventsUsageDescription</key>
 	<string>Do you allow automation for this app?</string>
+	<key>LSUIElement</key>
+	<true/>
 </dict>
 </plist>

@@ -34,10 +34,7 @@ class StatusItemManager: NSObject {
     // MARK: - Fileprivate Methods
     fileprivate func initStatusItem() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        let itemImage = NSImage(named: "peach")
-        itemImage?.isTemplate = true
-        statusItem?.button?.image = itemImage
-        
+        statusItem?.button?.title = "👻"
         statusItem?.button?.target = self
         statusItem?.button?.action = #selector(showContent)
     }

@@ -31,7 +31,7 @@ struct EmojiPanel: View {
                         title: SectionType.recent.rawValue,
                         items: EmojiStore.fetchRecentList(),
                         contentKeyPath: \.self) { emoji in
-                        guard let item = emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
+                            guard let item = self.emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
                         self.sharedState.selectedEmoji = item
                         self.selectionHandler(item)
                     }
@@ -41,7 +41,7 @@ struct EmojiPanel: View {
                 ForEach(SectionType.defaultCategories.map { $0.rawValue }, id: \.self) { category in
                     EmojiGrid(
                         title: category,
-                        items: emojiStore.emojisByCategory[category]!,
+                        items: self.emojiStore.emojisByCategory[category]!,
                         contentKeyPath: \.emoji) {
                         self.sharedState.selectedEmoji = $0
                         self.selectionHandler($0)

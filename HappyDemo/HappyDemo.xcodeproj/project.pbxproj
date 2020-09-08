@@ -21,19 +21,19 @@
 		DED45B9524FBAB59005C26DC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9424FBAB59005C26DC /* Constants.swift */; };
 		DED45B9B24FBC99D005C26DC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9A24FBC99D005C26DC /* Extensions.swift */; };
 		DED45B9D24FBF262005C26DC /* SharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9C24FBF262005C26DC /* SharedState.swift */; };
-		DEDF6E83250680D1008938CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E82250680D1008938CB /* AppDelegate.swift */; };
-		DEDF6E87250680D3008938CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6E86250680D3008938CB /* Assets.xcassets */; };
-		DEDF6E8A250680D3008938CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6E89250680D3008938CB /* Preview Assets.xcassets */; };
-		DEDF6E8D250680D3008938CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDF6E8B250680D3008938CB /* Main.storyboard */; };
-		DEDF6E9325068857008938CB /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D08D24FA51DA00B6E957 /* Emoji.swift */; };
-		DEDF6E942506885B008938CB /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = DE60D08C24FA51DA00B6E957 /* emoji.json */; };
-		DEDF6E962506888C008938CB /* SharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9C24FBF262005C26DC /* SharedState.swift */; };
-		DEDF6E9725068946008938CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9A24FBC99D005C26DC /* Extensions.swift */; };
-		DEDF6E9A25068A6C008938CB /* EmojiPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E9925068A6C008938CB /* EmojiPanel.swift */; };
-		DEDF6E9C25068AAC008938CB /* EmojiGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E9B25068AAC008938CB /* EmojiGrid.swift */; };
+		DEDF40AE25076D2C00389803 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF40AD25076D2C00389803 /* AppDelegate.swift */; };
+		DEDF40B225076D2E00389803 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDF40B125076D2E00389803 /* Assets.xcassets */; };
+		DEDF40B525076D2E00389803 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDF40B425076D2E00389803 /* Preview Assets.xcassets */; };
+		DEDF40B825076D2E00389803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDF40B625076D2E00389803 /* Main.storyboard */; };
+		DEDF40C125076DD400389803 /* EmojiPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF40BF25076DD400389803 /* EmojiPanel.swift */; };
+		DEDF40C225076DD400389803 /* EmojiGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF40C025076DD400389803 /* EmojiGrid.swift */; };
+		DEDF40C425076DDD00389803 /* StatusItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF40C325076DDD00389803 /* StatusItemManager.swift */; };
+		DEDF40C525076E1D00389803 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = DE60D08C24FA51DA00B6E957 /* emoji.json */; };
+		DEDF40C625076E1F00389803 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D08D24FA51DA00B6E957 /* Emoji.swift */; };
+		DEDF40C725076E2900389803 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E9D25068B0F008938CB /* SectionHeader.swift */; };
+		DEDF40C825076E9500389803 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9A24FBC99D005C26DC /* Extensions.swift */; };
+		DEDF40C925076E9700389803 /* SharedState.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9C24FBF262005C26DC /* SharedState.swift */; };
 		DEDF6E9E25068B0F008938CB /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E9D25068B0F008938CB /* SectionHeader.swift */; };
-		DEDF6E9F25068B0F008938CB /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6E9D25068B0F008938CB /* SectionHeader.swift */; };
-		DEDF6EA2250690AB008938CB /* StatusItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF6EA0250690AB008938CB /* StatusItemManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,17 +53,17 @@
 		DED45B9424FBAB59005C26DC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DED45B9A24FBC99D005C26DC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		DED45B9C24FBF262005C26DC /* SharedState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedState.swift; sourceTree = "<group>"; };
-		DEDF6E80250680D1008938CB /* Peachy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Peachy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DEDF6E82250680D1008938CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DEDF6E86250680D3008938CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		DEDF6E89250680D3008938CB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DEDF6E8C250680D3008938CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		DEDF6E8E250680D3008938CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DEDF6E8F250680D3008938CB /* Peachy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Peachy.entitlements; sourceTree = "<group>"; };
-		DEDF6E9925068A6C008938CB /* EmojiPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPanel.swift; sourceTree = "<group>"; };
-		DEDF6E9B25068AAC008938CB /* EmojiGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiGrid.swift; sourceTree = "<group>"; };
+		DEDF40AB25076D2C00389803 /* HappyMenuBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyMenuBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEDF40AD25076D2C00389803 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DEDF40B125076D2E00389803 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DEDF40B425076D2E00389803 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		DEDF40B725076D2E00389803 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DEDF40B925076D2E00389803 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEDF40BA25076D2E00389803 /* HappyMenuBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyMenuBar.entitlements; sourceTree = "<group>"; };
+		DEDF40BF25076DD400389803 /* EmojiPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiPanel.swift; sourceTree = "<group>"; };
+		DEDF40C025076DD400389803 /* EmojiGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiGrid.swift; sourceTree = "<group>"; };
+		DEDF40C325076DDD00389803 /* StatusItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemManager.swift; sourceTree = "<group>"; };
 		DEDF6E9D25068B0F008938CB /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
-		DEDF6EA0250690AB008938CB /* StatusItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +74,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DEDF6E7D250680D1008938CB /* Frameworks */ = {
+		DEDF40A825076D2C00389803 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -88,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				DE33430724F9675F007722EF /* HappyDemo */,
-				DEDF6E81250680D1008938CB /* Peachy */,
+				DEDF40AC25076D2C00389803 /* HappyMenuBar */,
 				DE33430624F9675F007722EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,7 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				DE33430524F9675F007722EF /* HappyDemo.app */,
-				DEDF6E80250680D1008938CB /* Peachy.app */,
+				DEDF40AB25076D2C00389803 /* HappyMenuBar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,34 +167,34 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		DEDF6E81250680D1008938CB /* Peachy */ = {
+		DEDF40AC25076D2C00389803 /* HappyMenuBar */ = {
 			isa = PBXGroup;
 			children = (
-				DEDF6E9825068A48008938CB /* Components */,
-				DEDF6E82250680D1008938CB /* AppDelegate.swift */,
-				DEDF6EA0250690AB008938CB /* StatusItemManager.swift */,
-				DEDF6E86250680D3008938CB /* Assets.xcassets */,
-				DEDF6E8B250680D3008938CB /* Main.storyboard */,
-				DEDF6E8E250680D3008938CB /* Info.plist */,
-				DEDF6E8F250680D3008938CB /* Peachy.entitlements */,
-				DEDF6E88250680D3008938CB /* Preview Content */,
+				DEDF40AD25076D2C00389803 /* AppDelegate.swift */,
+				DEDF40C325076DDD00389803 /* StatusItemManager.swift */,
+				DEDF40BE25076DD400389803 /* Components */,
+				DEDF40B125076D2E00389803 /* Assets.xcassets */,
+				DEDF40B625076D2E00389803 /* Main.storyboard */,
+				DEDF40B925076D2E00389803 /* Info.plist */,
+				DEDF40BA25076D2E00389803 /* HappyMenuBar.entitlements */,
+				DEDF40B325076D2E00389803 /* Preview Content */,
 			);
-			path = Peachy;
+			path = HappyMenuBar;
 			sourceTree = "<group>";
 		};
-		DEDF6E88250680D3008938CB /* Preview Content */ = {
+		DEDF40B325076D2E00389803 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				DEDF6E89250680D3008938CB /* Preview Assets.xcassets */,
+				DEDF40B425076D2E00389803 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		DEDF6E9825068A48008938CB /* Components */ = {
+		DEDF40BE25076DD400389803 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				DEDF6E9925068A6C008938CB /* EmojiPanel.swift */,
-				DEDF6E9B25068AAC008938CB /* EmojiGrid.swift */,
+				DEDF40BF25076DD400389803 /* EmojiPanel.swift */,
+				DEDF40C025076DD400389803 /* EmojiGrid.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -219,21 +219,21 @@
 			productReference = DE33430524F9675F007722EF /* HappyDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DEDF6E7F250680D1008938CB /* Peachy */ = {
+		DEDF40AA25076D2C00389803 /* HappyMenuBar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DEDF6E92250680D3008938CB /* Build configuration list for PBXNativeTarget "Peachy" */;
+			buildConfigurationList = DEDF40BB25076D2E00389803 /* Build configuration list for PBXNativeTarget "HappyMenuBar" */;
 			buildPhases = (
-				DEDF6E7C250680D1008938CB /* Sources */,
-				DEDF6E7D250680D1008938CB /* Frameworks */,
-				DEDF6E7E250680D1008938CB /* Resources */,
+				DEDF40A725076D2C00389803 /* Sources */,
+				DEDF40A825076D2C00389803 /* Frameworks */,
+				DEDF40A925076D2C00389803 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Peachy;
-			productName = Peachy;
-			productReference = DEDF6E80250680D1008938CB /* Peachy.app */;
+			name = HappyMenuBar;
+			productName = HappyMenuBar;
+			productReference = DEDF40AB25076D2C00389803 /* HappyMenuBar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -242,14 +242,14 @@
 		DE3342FD24F9675F007722EF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1200;
+				LastSwiftUpdateCheck = 1160;
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
 					DE33430424F9675F007722EF = {
 						CreatedOnToolsVersion = 12.0;
 					};
-					DEDF6E7F250680D1008938CB = {
-						CreatedOnToolsVersion = 12.0;
+					DEDF40AA25076D2C00389803 = {
+						CreatedOnToolsVersion = 11.6;
 					};
 				};
 			};
@@ -267,7 +267,7 @@
 			projectRoot = "";
 			targets = (
 				DE33430424F9675F007722EF /* HappyDemo */,
-				DEDF6E7F250680D1008938CB /* Peachy */,
+				DEDF40AA25076D2C00389803 /* HappyMenuBar */,
 			);
 		};
 /* End PBXProject section */
@@ -283,14 +283,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DEDF6E7E250680D1008938CB /* Resources */ = {
+		DEDF40A925076D2C00389803 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEDF6E8D250680D3008938CB /* Main.storyboard in Resources */,
-				DEDF6E8A250680D3008938CB /* Preview Assets.xcassets in Resources */,
-				DEDF6E942506885B008938CB /* emoji.json in Resources */,
-				DEDF6E87250680D3008938CB /* Assets.xcassets in Resources */,
+				DEDF40B825076D2E00389803 /* Main.storyboard in Resources */,
+				DEDF40B525076D2E00389803 /* Preview Assets.xcassets in Resources */,
+				DEDF40C525076E1D00389803 /* emoji.json in Resources */,
+				DEDF40B225076D2E00389803 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,28 +316,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DEDF6E7C250680D1008938CB /* Sources */ = {
+		DEDF40A725076D2C00389803 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEDF6E9725068946008938CB /* Extensions.swift in Sources */,
-				DEDF6E9325068857008938CB /* Emoji.swift in Sources */,
-				DEDF6E9C25068AAC008938CB /* EmojiGrid.swift in Sources */,
-				DEDF6EA2250690AB008938CB /* StatusItemManager.swift in Sources */,
-				DEDF6E9F25068B0F008938CB /* SectionHeader.swift in Sources */,
-				DEDF6E9A25068A6C008938CB /* EmojiPanel.swift in Sources */,
-				DEDF6E962506888C008938CB /* SharedState.swift in Sources */,
-				DEDF6E83250680D1008938CB /* AppDelegate.swift in Sources */,
+				DEDF40C625076E1F00389803 /* Emoji.swift in Sources */,
+				DEDF40C425076DDD00389803 /* StatusItemManager.swift in Sources */,
+				DEDF40C725076E2900389803 /* SectionHeader.swift in Sources */,
+				DEDF40AE25076D2C00389803 /* AppDelegate.swift in Sources */,
+				DEDF40C925076E9700389803 /* SharedState.swift in Sources */,
+				DEDF40C125076DD400389803 /* EmojiPanel.swift in Sources */,
+				DEDF40C225076DD400389803 /* EmojiGrid.swift in Sources */,
+				DEDF40C825076E9500389803 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		DEDF6E8B250680D3008938CB /* Main.storyboard */ = {
+		DEDF40B625076D2E00389803 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				DEDF6E8C250680D3008938CB /* Base */,
+				DEDF40B725076D2E00389803 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -503,46 +503,44 @@
 			};
 			name = Release;
 		};
-		DEDF6E90250680D3008938CB /* Debug */ = {
+		DEDF40BC25076D2E00389803 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Peachy/Peachy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = HappyMenuBar/HappyMenuBar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"Peachy/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"HappyMenuBar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Peachy/Info.plist;
+				INFOPLIST_FILE = HappyMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.Peachy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.HappyMenuBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		DEDF6E91250680D3008938CB /* Release */ = {
+		DEDF40BD25076D2E00389803 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Peachy/Peachy.entitlements;
+				CODE_SIGN_ENTITLEMENTS = HappyMenuBar/HappyMenuBar.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"Peachy/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"HappyMenuBar/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Peachy/Info.plist;
+				INFOPLIST_FILE = HappyMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.Peachy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.HappyMenuBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -570,11 +568,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DEDF6E92250680D3008938CB /* Build configuration list for PBXNativeTarget "Peachy" */ = {
+		DEDF40BB25076D2E00389803 /* Build configuration list for PBXNativeTarget "HappyMenuBar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				DEDF6E90250680D3008938CB /* Debug */,
-				DEDF6E91250680D3008938CB /* Release */,
+				DEDF40BC25076D2E00389803 /* Debug */,
+				DEDF40BD25076D2E00389803 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

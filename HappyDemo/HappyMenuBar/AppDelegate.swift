@@ -1,14 +1,14 @@
 //
 //  AppDelegate.swift
-//  Peachy
+//  HappyMenuBar
 //
-//  Created by Huong Do on 9/7/20.
+//  Created by Huong Do on 9/8/20.
 //
 
 import Cocoa
 import SwiftUI
 
-@main
+@NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     @IBOutlet var statusItemManager: StatusItemManager!

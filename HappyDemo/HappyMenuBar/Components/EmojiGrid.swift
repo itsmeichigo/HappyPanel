@@ -35,11 +35,11 @@ struct EmojiGrid<T: Hashable>: View {
             VStack(alignment: .leading) {
                 ForEach(itemGroups, id: \.self) { row in
                     HStack {
-                        ForEach(row, id: contentKeyPath) { item in
+                        ForEach(row, id: self.contentKeyPath) { item in
                             Button(action: {
-                                completionHandler(item)
+                                self.completionHandler(item)
                             }) {
-                                Text(item[keyPath: contentKeyPath])
+                                Text(item[keyPath: self.contentKeyPath])
                                     .font(.headline)
                             }
                             .buttonStyle(PlainButtonStyle())
@@ -55,10 +55,8 @@ struct EmojiGrid<T: Hashable>: View {
 
 struct EmojiGrid_Previews: PreviewProvider {
     static var previews: some View {
-        let store = EmojiStore()
-        let testItems = Array(store.allEmojis.prefix(12))
         EmojiGrid(title: "Test",
-                  items: testItems,
+                  items: Array(EmojiStore().allEmojis.prefix(12)),
                   contentKeyPath: \.emoji,
                   completionHandler: { _ in })
     }
