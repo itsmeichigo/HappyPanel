@@ -14,6 +14,8 @@ class StatusItemManager: NSObject {
     var statusItem: NSStatusItem?
     var popover: NSPopover?
     
+    let emojiStore = EmojiStore.shared
+    
     // MARK: - Init
     override init() {
         super.init()
@@ -50,7 +52,7 @@ class StatusItemManager: NSObject {
     @objc fileprivate func showContent() {
         guard let popover = popover, let button = statusItem?.button else { return }
         
-        let happyPanel = EmojiPanel { emoji in
+        let happyPanel = EmojiPanel(emojiStore: emojiStore) { emoji in
             let source = """
                 set the clipboard to "\(emoji.emoji)"
                 tell application "System Events" to keystroke "v" using command down
@@ -61,10 +63,9 @@ class StatusItemManager: NSObject {
                 if let err = error {
                     print(err)
                 }
-                
-                print(emoji.emoji)
             }
         }
+        .frame(width: 400, height: 280)
         
         popover.contentViewController = NSHostingController(rootView: happyPanel)
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)

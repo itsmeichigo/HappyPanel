@@ -10,8 +10,8 @@ import SwiftUI
 struct EmojiPanel: View {
     @ObservedObject var sharedState = SharedState()
     
+    var emojiStore: EmojiStore
     var selectionHandler: (Emoji)->Void
-    var emojiStore = EmojiStore.shared
     
     var body: some View {
         VStack(spacing: 0) {
@@ -48,9 +48,6 @@ struct EmojiPanel: View {
                     }
                 }
             }
-            
-            Color.background
-                .frame(height: 24)
         }
     }
     
@@ -87,6 +84,7 @@ struct EmojiPanel: View {
 
 struct EmojiPanel_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiPanel(selectionHandler: { _ in })
+        EmojiPanel(emojiStore: EmojiStore.shared,
+                   selectionHandler: { _ in })
     }
 }

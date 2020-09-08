@@ -20,14 +20,20 @@ struct SectionHeader: View {
     }
     
     var filledBackground: some View {
-        GeometryReader { proxy in
-            Color.background
-                .frame(
-                    width: proxy.size.width * 3,
-                    height: proxy.size.height * 3
-                )
+        Group {
+            #if os(iOS)
+            GeometryReader { proxy in
+                Color.background
+                    .frame(
+                        width: proxy.size.width * 3,
+                        height: proxy.size.height * 3
+                    )
+            }
+            .offset(x: -20, y: -20)
+            #elseif os(macOS)
+            EmptyView()
+            #endif
         }
-        .offset(x: -20, y: -20)
     }
 }
 

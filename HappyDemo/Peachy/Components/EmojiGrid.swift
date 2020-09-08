@@ -22,7 +22,7 @@ struct EmojiGrid<T: Hashable>: View {
         var itemsLeft: [T] = items
         
         while !itemsLeft.isEmpty {
-            let prefix = Array(itemsLeft.prefix(6))
+            let prefix = Array(itemsLeft.prefix(9))
             groups.append(prefix)
             itemsLeft.removeSubrange(0..<prefix.count)
         }
@@ -40,6 +40,7 @@ struct EmojiGrid<T: Hashable>: View {
                                 completionHandler(item)
                             }) {
                                 Text(item[keyPath: contentKeyPath])
+                                    .font(.headline)
                             }
                             .buttonStyle(PlainButtonStyle())
                             .padding(4)
