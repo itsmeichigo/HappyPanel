@@ -11,10 +11,11 @@ import SwiftUI
 class StatusItemManager: NSObject {
 
     // MARK: - Properties
-    var statusItem: NSStatusItem?
-    var popover: NSPopover?
+    private var statusItem: NSStatusItem?
+    private var popover: NSPopover?
+    private var selectedEmoji: Emoji?
     
-    let emojiStore = EmojiStore.shared
+    private let emojiStore = EmojiStore.shared
     
     // MARK: - Init
     override init() {
@@ -43,24 +44,16 @@ class StatusItemManager: NSObject {
     fileprivate func initPopover() {
         popover = NSPopover()
         popover?.behavior = .transient
+        popover?.delegate = self
     }
     
         
     @objc fileprivate func showContent() {
         guard let popover = popover, let button = statusItem?.button else { return }
         
-        let happyPanel = EmojiPanel(emojiStore: emojiStore) { emoji in
-            let source = """
-                set the clipboard to "\(emoji.emoji)"
-                tell application "System Events" to keystroke "v" using command down
-            """
-            if let script = NSAppleScript(source: source) {
-                var error: NSDictionary?
-                script.executeAndReturnError(&error)
-                if let err = error {
-                    print(err)
-                }
-            }
+        let happyPanel = EmojiPanel(emojiStore: emojiStore) { [weak self] emoji in
+            self?.selectedEmoji = emoji
+            popover.close()
         }
         .frame(width: 400, height: 280)
         
@@ -70,3 +63,23 @@ class StatusItemManager: NSObject {
  
 }
 
+extension StatusItemManager: NSPopoverDelegate {
+    func popoverDidClose(_ notification: Notification) {
+        guard let emoji = selectedEmoji else { return }
+        
+        let source = """
+            set the clipboard to "\(emoji.emoji)"
+            tell application "System Events" to keystroke "v" using command down
+        """
+        
+        if let script = NSAppleScript(source: source) {
+            var error: NSDictionary?
+            script.executeAndReturnError(&error)
+            if let err = error {
+                print(err)
+            }
+        }
+        
+        selectedEmoji = nil
+    }
+}
