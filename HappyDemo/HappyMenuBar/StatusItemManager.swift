@@ -16,6 +16,7 @@ class StatusItemManager: NSObject {
     private var selectedEmoji: Emoji?
     
     private let emojiStore = EmojiStore.shared
+    private let sharedState = SharedState()
     
     // MARK: - Init
     override init() {
@@ -45,19 +46,19 @@ class StatusItemManager: NSObject {
         popover = NSPopover()
         popover?.behavior = .transient
         popover?.delegate = self
+        let happyPanel = EmojiPanel(emojiStore: emojiStore) { [weak self] emoji in
+            self?.selectedEmoji = emoji
+            self?.popover?.close()
+        }
+        .frame(width: 400, height: 280)
+        .environmentObject(sharedState)
+        
+        popover?.contentViewController = NSHostingController(rootView: happyPanel)
     }
     
         
     @objc fileprivate func showContent() {
         guard let popover = popover, let button = statusItem?.button else { return }
-        
-        let happyPanel = EmojiPanel(emojiStore: emojiStore) { [weak self] emoji in
-            self?.selectedEmoji = emoji
-            popover.close()
-        }
-        .frame(width: 400, height: 280)
-        
-        popover.contentViewController = NSHostingController(rootView: happyPanel)
         popover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
     }
  
@@ -81,5 +82,6 @@ extension StatusItemManager: NSPopoverDelegate {
         }
         
         selectedEmoji = nil
+        sharedState.resetState()
     }
 }
