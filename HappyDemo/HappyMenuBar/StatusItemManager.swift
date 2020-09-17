@@ -36,7 +36,8 @@ class StatusItemManager: NSObject {
     // MARK: - Fileprivate Methods
     fileprivate func initStatusItem() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusItem?.button?.title = "👻"
+        statusItem?.button?.image = NSImage(named: "ghost")
+        statusItem?.button?.image?.isTemplate = true
         statusItem?.button?.target = self
         statusItem?.button?.action = #selector(showContent)
     }
@@ -46,10 +47,12 @@ class StatusItemManager: NSObject {
         popover = NSPopover()
         popover?.behavior = .transient
         popover?.delegate = self
-        let happyPanel = EmojiPanel(emojiStore: emojiStore) { [weak self] emoji in
+        let happyPanel = EmojiPanel(emojiStore: emojiStore, selectionHandler: { [weak self] emoji in
             self?.selectedEmoji = emoji
             self?.popover?.close()
-        }
+        }, settingHandler: {
+            NSApplication.shared.terminate(self)
+        })
         .frame(width: 400, height: 280)
         .environmentObject(sharedState)
         
