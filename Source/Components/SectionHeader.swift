@@ -16,7 +16,6 @@ struct SectionHeader: View {
             .font(.caption)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(filledBackground)
-            .padding(.top, 16)
     }
     
     var filledBackground: some View {

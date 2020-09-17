@@ -15,8 +15,16 @@ struct EmojiPanel: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // TODO: search bar and results
-            self.emojiSections
+            SearchBar()
+                .environmentObject(sharedState)
+            
+            ZStack {
+                self.emojiSections
+                
+                if sharedState.isSearching || !sharedState.keyword.isEmpty {
+                    self.emojiResults
+                }
+            }
         }
         .background(Color.background)
         .cornerRadius(8)
@@ -75,7 +83,6 @@ struct EmojiPanel: View {
                         self.sharedState.selectedEmoji = $0
                         self.selectionHandler($0)
                     }
-                    .background(Color.background)
                 }
             }
         }
