@@ -15,9 +15,7 @@ struct MainContent: View {
     var body: some View {
         VStack {
             
-            #if os(iOS)
             self.indicator
-            #endif
             
             VStack(spacing: 0) {
                 SearchBar()

@@ -12,7 +12,6 @@ struct EmojiPanel: View {
     
     var emojiStore: EmojiStore
     var selectionHandler: (Emoji)->Void
-    var settingHandler: () -> Void
     
     var body: some View {
         VStack(spacing: 0) {
@@ -20,7 +19,9 @@ struct EmojiPanel: View {
                 SearchBar()
                     .environmentObject(sharedState)
                 
-                Button("⚙︎", action: settingHandler)
+                Button("⚙︎") {
+                    NSApplication.shared.terminate(self)
+                }
                     .font(.title)
                     .buttonStyle(PlainButtonStyle())
                     .foregroundColor(Color(NSColor.textColor))
@@ -101,8 +102,7 @@ struct EmojiPanel: View {
 struct EmojiPanel_Previews: PreviewProvider {
     static var previews: some View {
         EmojiPanel(emojiStore: EmojiStore.shared,
-                   selectionHandler: { _ in },
-                   settingHandler: {})
+                   selectionHandler: { _ in })
             .environmentObject(SharedState())
     }
 }

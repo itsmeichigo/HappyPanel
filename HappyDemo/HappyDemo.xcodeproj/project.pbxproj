@@ -18,6 +18,7 @@
 		DE60D09724FA51DA00B6E957 /* EmojiSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D09024FA51DA00B6E957 /* EmojiSection.swift */; };
 		DE60D09824FA51DA00B6E957 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D09124FA51DA00B6E957 /* SearchBar.swift */; };
 		DE60D09A24FA51DA00B6E957 /* SectionIndexPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D09324FA51DA00B6E957 /* SectionIndexPicker.swift */; };
+		DED4562D2517050C00593D46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DED4562C2517050C00593D46 /* LaunchScreen.storyboard */; };
 		DED45B9324FBAB34005C26DC /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9224FBAB34005C26DC /* MainContent.swift */; };
 		DED45B9524FBAB59005C26DC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9424FBAB59005C26DC /* Constants.swift */; };
 		DED45B9B24FBC99D005C26DC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED45B9A24FBC99D005C26DC /* Extensions.swift */; };
@@ -51,6 +52,7 @@
 		DE60D09024FA51DA00B6E957 /* EmojiSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiSection.swift; sourceTree = "<group>"; };
 		DE60D09124FA51DA00B6E957 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		DE60D09324FA51DA00B6E957 /* SectionIndexPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionIndexPicker.swift; sourceTree = "<group>"; };
+		DED4562C2517050C00593D46 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DED45B9224FBAB34005C26DC /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
 		DED45B9424FBAB59005C26DC /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		DED45B9A24FBC99D005C26DC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				DE60D08E24FA51DA00B6E957 /* Source */,
 				DE33430824F9675F007722EF /* HappyDemoApp.swift */,
 				DE33430A24F9675F007722EF /* ContentView.swift */,
+				DED4562C2517050C00593D46 /* LaunchScreen.storyboard */,
 				DE33430C24F96762007722EF /* Assets.xcassets */,
 				DE33431124F96762007722EF /* Info.plist */,
 				DE33430E24F96762007722EF /* Preview Content */,
@@ -281,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE33431024F96762007722EF /* Preview Assets.xcassets in Resources */,
+				DED4562D2517050C00593D46 /* LaunchScreen.storyboard in Resources */,
 				DE60D09424FA51DA00B6E957 /* emoji.json in Resources */,
 				DE33430D24F96762007722EF /* Assets.xcassets in Resources */,
 			);

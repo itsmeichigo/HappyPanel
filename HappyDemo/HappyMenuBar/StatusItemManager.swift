@@ -47,12 +47,10 @@ class StatusItemManager: NSObject {
         popover = NSPopover()
         popover?.behavior = .transient
         popover?.delegate = self
-        let happyPanel = EmojiPanel(emojiStore: emojiStore, selectionHandler: { [weak self] emoji in
+        let happyPanel = EmojiPanel(emojiStore: emojiStore) { [weak self] emoji in
             self?.selectedEmoji = emoji
             self?.popover?.close()
-        }, settingHandler: {
-            NSApplication.shared.terminate(self)
-        })
+        }
         .frame(width: 400, height: 280)
         .environmentObject(sharedState)
         
