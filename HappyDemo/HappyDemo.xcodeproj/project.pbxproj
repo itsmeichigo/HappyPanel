@@ -11,6 +11,7 @@
 		DE33430B24F9675F007722EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33430A24F9675F007722EF /* ContentView.swift */; };
 		DE33430D24F96762007722EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE33430C24F96762007722EF /* Assets.xcassets */; };
 		DE33431024F96762007722EF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE33430F24F96762007722EF /* Preview Assets.xcassets */; };
+		DE497BED255FD5EF003B0D83 /* EmojiSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D09024FA51DA00B6E957 /* EmojiSection.swift */; };
 		DE5EFBFB2512FE5A003D7A7A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE5EFBFA2512FE5A003D7A7A /* SearchBar.swift */; };
 		DE60D09424FA51DA00B6E957 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = DE60D08C24FA51DA00B6E957 /* emoji.json */; };
 		DE60D09524FA51DA00B6E957 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D08D24FA51DA00B6E957 /* Emoji.swift */; };
@@ -28,7 +29,6 @@
 		DEDF40B525076D2E00389803 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDF40B425076D2E00389803 /* Preview Assets.xcassets */; };
 		DEDF40B825076D2E00389803 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDF40B625076D2E00389803 /* Main.storyboard */; };
 		DEDF40C125076DD400389803 /* EmojiPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF40BF25076DD400389803 /* EmojiPanel.swift */; };
-		DEDF40C225076DD400389803 /* EmojiGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF40C025076DD400389803 /* EmojiGrid.swift */; };
 		DEDF40C425076DDD00389803 /* StatusItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDF40C325076DDD00389803 /* StatusItemManager.swift */; };
 		DEDF40C525076E1D00389803 /* emoji.json in Resources */ = {isa = PBXBuildFile; fileRef = DE60D08C24FA51DA00B6E957 /* emoji.json */; };
 		DEDF40C625076E1F00389803 /* Emoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D08D24FA51DA00B6E957 /* Emoji.swift */; };
@@ -65,7 +65,6 @@
 		DEDF40B925076D2E00389803 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DEDF40BA25076D2E00389803 /* HappyMenuBar.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyMenuBar.entitlements; sourceTree = "<group>"; };
 		DEDF40BF25076DD400389803 /* EmojiPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiPanel.swift; sourceTree = "<group>"; };
-		DEDF40C025076DD400389803 /* EmojiGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmojiGrid.swift; sourceTree = "<group>"; };
 		DEDF40C325076DDD00389803 /* StatusItemManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusItemManager.swift; sourceTree = "<group>"; };
 		DEDF6E9D25068B0F008938CB /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -199,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				DEDF40BF25076DD400389803 /* EmojiPanel.swift */,
-				DEDF40C025076DD400389803 /* EmojiGrid.swift */,
 				DE5EFBFA2512FE5A003D7A7A /* SearchBar.swift */,
 			);
 			path = Components;
@@ -327,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE497BED255FD5EF003B0D83 /* EmojiSection.swift in Sources */,
 				DEDF40C625076E1F00389803 /* Emoji.swift in Sources */,
 				DEDF40C425076DDD00389803 /* StatusItemManager.swift in Sources */,
 				DEDF40C725076E2900389803 /* SectionHeader.swift in Sources */,
@@ -334,7 +333,6 @@
 				DEDF40C925076E9700389803 /* SharedState.swift in Sources */,
 				DE5EFBFB2512FE5A003D7A7A /* SearchBar.swift in Sources */,
 				DEDF40C125076DD400389803 /* EmojiPanel.swift in Sources */,
-				DEDF40C225076DD400389803 /* EmojiGrid.swift in Sources */,
 				DEDF40C825076E9500389803 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,7 +524,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.HappyMenuBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -549,7 +547,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.HappyMenuBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

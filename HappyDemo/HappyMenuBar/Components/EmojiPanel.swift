@@ -42,29 +42,35 @@ struct EmojiPanel: View {
     }
     
     private var emojiSections: some View {
-        List {
-            Group {
-                if !EmojiStore.fetchRecentList().isEmpty {
-                    EmojiGrid(
-                        title: SectionType.recent.rawValue,
-                        items: EmojiStore.fetchRecentList(),
-                        contentKeyPath: \.self) { emoji in
-                            guard let item = self.emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
-                        self.sharedState.selectedEmoji = item
-                        self.selectionHandler(item)
+        ScrollViewReader { proxy in
+            List {
+                Group {
+                    if !EmojiStore.fetchRecentList().isEmpty {
+                        EmojiSection(
+                            title: SectionType.recent.rawValue,
+                            items: EmojiStore.fetchRecentList(),
+                            contentKeyPath: \.self) { emoji in
+                            guard let item = emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
+                            self.sharedState.selectedEmoji = item
+                        }
+                        .id(SectionType.recent.rawValue)
                     }
-                    .id(SectionType.recent.rawValue)
+                    
+                    ForEach(SectionType.defaultCategories.map { $0.rawValue }, id: \.self) { category in
+                        EmojiSection(
+                            title: category,
+                            items: emojiStore.emojisByCategory[category]!,
+                            contentKeyPath: \.emoji) {
+                            self.sharedState.selectedEmoji = $0
+                        }
+                    }
+                }
+                .onChange(of: sharedState.currentCategory) { target in
+                    proxy.scrollTo(target, anchor: .top)
                 }
                 
-                ForEach(SectionType.defaultCategories.map { $0.rawValue }, id: \.self) { category in
-                    EmojiGrid(
-                        title: category,
-                        items: self.emojiStore.emojisByCategory[category]!,
-                        contentKeyPath: \.emoji) {
-                        self.sharedState.selectedEmoji = $0
-                        self.selectionHandler($0)
-                    }
-                }
+                Color.background
+                    .frame(height: 24)
             }
         }
     }
@@ -86,12 +92,11 @@ struct EmojiPanel: View {
                 
             } else {
                 List {
-                    EmojiGrid(
+                    EmojiSection(
                         title: "Search Results",
                         items: emojiStore.filteredEmojis(with: sharedState.keyword),
                         contentKeyPath: \.emoji) {
                         self.sharedState.selectedEmoji = $0
-                        self.selectionHandler($0)
                     }
                 }
             }
