@@ -51,7 +51,7 @@ struct EmojiPanel: View {
                             items: EmojiStore.fetchRecentList(),
                             contentKeyPath: \.self) { emoji in
                             guard let item = emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
-                            self.sharedState.selectedEmoji = item
+                            self.selectionHandler(item)
                         }
                         .id(SectionType.recent.rawValue)
                     }
@@ -61,7 +61,7 @@ struct EmojiPanel: View {
                             title: category,
                             items: emojiStore.emojisByCategory[category]!,
                             contentKeyPath: \.emoji) {
-                            self.sharedState.selectedEmoji = $0
+                            self.selectionHandler($0)
                         }
                     }
                 }
@@ -96,7 +96,7 @@ struct EmojiPanel: View {
                         title: "Search Results",
                         items: emojiStore.filteredEmojis(with: sharedState.keyword),
                         contentKeyPath: \.emoji) {
-                        self.sharedState.selectedEmoji = $0
+                        self.selectionHandler($0)
                     }
                 }
             }

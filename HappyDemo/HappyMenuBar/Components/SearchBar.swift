@@ -24,3 +24,10 @@ struct SearchBar_Previews: PreviewProvider {
             .environmentObject(SharedState())
     }
 }
+
+extension NSTextField {
+    open override var focusRingType: NSFocusRingType {
+        get { .none }
+        set { super.focusRingType = .none }
+    }
+}
