@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C6E2E8A26905A33007B57C6 /* SectionIndexPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE60D09324FA51DA00B6E957 /* SectionIndexPicker.swift */; };
 		DE33430924F9675F007722EF /* HappyDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33430824F9675F007722EF /* HappyDemoApp.swift */; };
 		DE33430B24F9675F007722EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33430A24F9675F007722EF /* ContentView.swift */; };
 		DE33430D24F96762007722EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE33430C24F96762007722EF /* Assets.xcassets */; };
@@ -325,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C6E2E8A26905A33007B57C6 /* SectionIndexPicker.swift in Sources */,
 				DE497BED255FD5EF003B0D83 /* EmojiSection.swift in Sources */,
 				DEDF40C625076E1F00389803 /* Emoji.swift in Sources */,
 				DEDF40C425076DDD00389803 /* StatusItemManager.swift in Sources */,

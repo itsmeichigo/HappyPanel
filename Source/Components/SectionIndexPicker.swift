@@ -20,12 +20,14 @@ struct SectionIndexPicker: View {
             }
         })
         .pickerStyle(SegmentedPickerStyle())
-        .background(Blur(style: .systemUltraThinMaterial).cornerRadius(8.0))
+        .background(Blur().cornerRadius(8.0))
+        .labelsHidden()
     }
 }
 
+#if os(iOS)
 struct Blur: UIViewRepresentable {
-    var style: UIBlurEffect.Style = .systemMaterial
+    var style: UIBlurEffect.Style = .systemUltraThinMaterial
 
     func makeUIView(context: Context) -> UIVisualEffectView {
         return UIVisualEffectView(effect: UIBlurEffect(style: style))
@@ -35,6 +37,22 @@ struct Blur: UIViewRepresentable {
         uiView.effect = UIBlurEffect(style: style)
     }
 }
+#elseif os(macOS)
+struct Blur: NSViewRepresentable {
+
+    func makeNSView(context: Context) -> NSVisualEffectView {
+        let view = NSVisualEffectView()
+        view.blendingMode = .withinWindow
+        view.material = .hudWindow
+        return view
+    }
+
+    func updateNSView(_ nsView: NSVisualEffectView, context: Context) {
+        nsView.blendingMode = .withinWindow
+        nsView.material = .hudWindow
+    }
+}
+#endif
 
 struct SectionIndexPicker_Previews: PreviewProvider {
     static var previews: some View {

@@ -34,6 +34,10 @@ struct EmojiPanel: View {
                 if sharedState.isSearching || !sharedState.keyword.isEmpty {
                     self.emojiResults
                 }
+                
+                if !sharedState.isSearching, sharedState.keyword.isEmpty {
+                    self.sectionPicker
+                }
             }
         }
         .background(Color.background)
@@ -101,6 +105,24 @@ struct EmojiPanel: View {
                 }
             }
         }
+    }
+    
+    private var sectionPicker: some View {
+        VStack {
+            Spacer()
+            
+            SectionIndexPicker(sections: displayedCategories)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 8)
+                .environmentObject(sharedState)
+        }
+    }
+    
+    private var displayedCategories: [String] {
+        if EmojiStore.fetchRecentList().isEmpty {
+            return SectionType.defaultCategories.map { $0.rawValue }
+        }
+        return SectionType.allCases.map { $0.rawValue }
     }
 }
 
