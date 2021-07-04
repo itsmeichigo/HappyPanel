@@ -48,6 +48,7 @@ class StatusItemManager: NSObject {
         popover?.behavior = .transient
         popover?.delegate = self
         let happyPanel = EmojiPanel(emojiStore: emojiStore) { [weak self] emoji in
+            EmojiStore.saveRecentEmoji(emoji)
             self?.selectedEmoji = emoji
             self?.popover?.close()
         }
