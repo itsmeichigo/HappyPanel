@@ -5,22 +5,25 @@
 //  Created by ichigo on 04/07/2021.
 //
 
+import LaunchAtLogin
 import SwiftUI
 
 struct MainMenu: View {
-    @State private var startsAtLaunch = false
+    
+    @State private var shouldLaunchAtLogin = LaunchAtLogin.isEnabled
     
     var body: some View {
         Menu("") {
             Section {
                 Button(action: {
-                    startsAtLaunch.toggle()
+                    LaunchAtLogin.isEnabled.toggle()
+                    shouldLaunchAtLogin.toggle()
                 }, label: {
                     HStack {
-                        if startsAtLaunch {
+                        if shouldLaunchAtLogin {
                             Image(systemName: "checkmark")
                         }
-                        Text("Start at Launch")
+                        Text("Launch at Login")
                     }
                 })
             }
