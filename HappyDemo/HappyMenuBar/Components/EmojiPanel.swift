@@ -19,10 +19,7 @@ struct EmojiPanel: View {
                 SearchBar()
                     .environmentObject(sharedState)
                 
-                Button(action: {}, label: {
-                    Image(systemName: "gearshape.fill")
-                })
-                .buttonStyle(PlainButtonStyle())
+                MainMenu()
             }
             .font(.title3)
             .foregroundColor(Color(NSColor.textColor))
@@ -34,10 +31,10 @@ struct EmojiPanel: View {
                 if sharedState.isSearching || !sharedState.keyword.isEmpty {
                     self.emojiResults
                 }
-                
-                if !sharedState.isSearching, sharedState.keyword.isEmpty {
-                    self.sectionPicker
-                }
+            }
+            
+            if !sharedState.isSearching, sharedState.keyword.isEmpty {
+                self.sectionPicker
             }
         }
         .background(Color.background)
@@ -108,14 +105,11 @@ struct EmojiPanel: View {
     }
     
     private var sectionPicker: some View {
-        VStack {
-            Spacer()
-            
-            SectionIndexPicker(sections: displayedCategories)
-                .padding(.horizontal, 16)
-                .padding(.bottom, 8)
-                .environmentObject(sharedState)
-        }
+        SectionIndexPicker(sections: displayedCategories)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .environmentObject(sharedState)
+            .background(Blur())
     }
     
     private var displayedCategories: [String] {
