@@ -13,6 +13,7 @@ struct SearchBar: View {
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
+                .padding(.leading, 8)
             TextField("Search emoji", text: $sharedState.keyword)
                 .textFieldStyle(PlainTextFieldStyle())
         }

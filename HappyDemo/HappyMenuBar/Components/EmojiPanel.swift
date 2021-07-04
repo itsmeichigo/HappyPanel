@@ -69,9 +69,6 @@ struct EmojiPanel: View {
                 .onChange(of: sharedState.currentCategory) { target in
                     proxy.scrollTo(target, anchor: .top)
                 }
-                
-                Color.background
-                    .frame(height: 24)
             }
         }
     }

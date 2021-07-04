@@ -48,10 +48,14 @@ struct ButtonOnlyMenuStyle : MenuStyle {
         Menu(configuration)
             .frame(width: 44, height: 44)
             .overlay(
-                Image(systemName: "gearshape.fill")
-                    .padding()
-                    .background(Color.background)
-                    .allowsHitTesting(false)
+                HStack {
+                    Spacer()
+                    Image(systemName: "gearshape.fill")
+                }
+                .padding()
+                .font(.title2)
+                .background(Color.background)
+                .allowsHitTesting(false)
             )
     }
 }
