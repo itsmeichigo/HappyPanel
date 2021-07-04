@@ -24,7 +24,7 @@ struct EmojiPanel: View {
                 })
                 .buttonStyle(PlainButtonStyle())
             }
-            .font(.title2)
+            .font(.title3)
             .foregroundColor(Color(NSColor.textColor))
             .padding(.trailing, 8)
             

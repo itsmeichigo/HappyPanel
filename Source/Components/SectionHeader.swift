@@ -9,11 +9,24 @@ import SwiftUI
 
 struct SectionHeader: View {
     let title: String
+    #if os(iOS)
+    let titleFont: Font = .caption
+    #elseif os(macOS)
+    let titleFont: Font = .title3
+    #endif
     
     var body: some View {
+        #if os(iOS)
+        sectionText
+        #elseif os(macOS)
+        sectionText.padding()
+        #endif
+    }
+    
+    var sectionText: some View {
         Text(title)
             .foregroundColor(.gray)
-            .font(.caption)
+            .font(titleFont)
             .frame(maxWidth: .infinity, alignment: .leading)
             .background(filledBackground)
     }
