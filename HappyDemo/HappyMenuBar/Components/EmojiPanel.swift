@@ -13,6 +13,13 @@ struct EmojiPanel: View {
     var emojiStore: EmojiStore
     var selectionHandler: (Emoji)->Void
     
+    @State private var categoryUpdatedByOffset = false
+    
+    init(emojiStore: EmojiStore, selectionHandler: @escaping (Emoji)->Void) {
+        self.emojiStore = emojiStore
+        self.selectionHandler = selectionHandler
+    }
+    
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 2) {
@@ -44,30 +51,64 @@ struct EmojiPanel: View {
     
     private var emojiSections: some View {
         ScrollViewReader { proxy in
-            List {
-                Group {
-                    if !EmojiStore.fetchRecentList().isEmpty {
-                        EmojiSection(
-                            title: SectionType.recent.rawValue,
-                            items: EmojiStore.fetchRecentList(),
-                            contentKeyPath: \.self) { emoji in
-                            guard let item = emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
-                            self.selectionHandler(item)
+            GeometryReader { geometry in
+                List {
+                    Group {
+                        if !EmojiStore.fetchRecentList().isEmpty {
+                            let category = SectionType.recent.rawValue
+                            EmojiSection(
+                                title: SectionType.recent.rawValue,
+                                items: EmojiStore.fetchRecentList(),
+                                contentKeyPath: \.self) { emoji in
+                                guard let item = emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
+                                self.selectionHandler(item)
+                            }
+                            .id(category)
+                            .transformAnchorPreference(key: OffsetKey.self, value: .bounds) {
+                                $0.append(OffsetViewFrame(id: category, frame: geometry[$1]))
+                            }
+                            .onPreferenceChange(OffsetKey.self) {
+                                guard sharedState.currentCategory != category else {
+                                    return
+                                }
+                                if let item = $0.filter({ $0.id == category }).last,
+                                   item.frame.origin.y <= 0,
+                                   abs(item.frame.origin.y) < abs(item.frame.size.height) {
+                                    categoryUpdatedByOffset = true
+                                    sharedState.currentCategory = category
+                                }
+                            }
                         }
-                        .id(SectionType.recent.rawValue)
-                    }
-                    
-                    ForEach(SectionType.defaultCategories.map { $0.rawValue }, id: \.self) { category in
-                        EmojiSection(
-                            title: category,
-                            items: emojiStore.emojisByCategory[category]!,
-                            contentKeyPath: \.emoji) {
-                            self.selectionHandler($0)
+                        
+                        ForEach(SectionType.defaultCategories.map { $0.rawValue }, id: \.self) { category in
+                            EmojiSection(
+                                title: category,
+                                items: emojiStore.emojisByCategory[category]!,
+                                contentKeyPath: \.emoji) {
+                                self.selectionHandler($0)
+                            }
+                            .transformAnchorPreference(key: OffsetKey.self, value: .bounds) {
+                                $0.append(OffsetViewFrame(id: category, frame: geometry[$1]))
+                            }
+                            .onPreferenceChange(OffsetKey.self) {
+                                guard sharedState.currentCategory != category else {
+                                    return
+                                }
+                                if let item = $0.filter({ $0.id == category }).last,
+                                   item.frame.origin.y <= 0,
+                                   abs(item.frame.origin.y) < abs(item.frame.size.height) {
+                                    categoryUpdatedByOffset = true
+                                    sharedState.currentCategory = category
+                                }
+                            }
                         }
                     }
-                }
-                .onChange(of: sharedState.currentCategory) { target in
-                    proxy.scrollTo(target, anchor: .top)
+                    .onChange(of: sharedState.currentCategory) { target in
+                        guard !categoryUpdatedByOffset else {
+                            return
+                        }
+                        proxy.scrollTo(target, anchor: .top)
+                    }
                 }
             }
         }
@@ -106,7 +147,6 @@ struct EmojiPanel: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
             .environmentObject(sharedState)
-            .background(Blur())
     }
     
     private var displayedCategories: [String] {
@@ -122,5 +162,25 @@ struct EmojiPanel_Previews: PreviewProvider {
         EmojiPanel(emojiStore: EmojiStore.shared,
                    selectionHandler: { _ in })
             .environmentObject(SharedState())
+    }
+}
+
+struct OffsetViewFrame: Equatable {
+    let id: String
+    let frame: CGRect
+
+    static func == (lhs: OffsetViewFrame, rhs: OffsetViewFrame) -> Bool {
+        lhs.id == rhs.id && lhs.frame == rhs.frame
+    }
+}
+
+struct OffsetKey: PreferenceKey {
+    typealias Value = [OffsetViewFrame] // The list of view frame changes in a View tree.
+
+    static var defaultValue: [OffsetViewFrame] = []
+
+    /// When traversing the view tree, Swift UI will use this function to collect all view frame changes.
+    static func reduce(value: inout [OffsetViewFrame], nextValue: () -> [OffsetViewFrame]) {
+        value.append(contentsOf: nextValue())
     }
 }
