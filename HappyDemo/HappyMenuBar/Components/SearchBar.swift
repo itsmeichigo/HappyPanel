@@ -11,10 +11,13 @@ struct SearchBar: View {
     @EnvironmentObject var sharedState: SharedState
     
     var body: some View {
-        TextField("Search emoji", text: $sharedState.keyword)
-            .textFieldStyle(RoundedBorderTextFieldStyle())
-            .padding(.horizontal, 8)
-            .frame(height: 44)
+        HStack {
+            Image(systemName: "magnifyingglass")
+            TextField("Search emoji", text: $sharedState.keyword)
+                .textFieldStyle(PlainTextFieldStyle())
+        }
+        .frame(height: 44)
+        .padding(.horizontal, 8)
     }
 }
 

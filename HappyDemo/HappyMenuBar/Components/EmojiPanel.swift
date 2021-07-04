@@ -19,13 +19,13 @@ struct EmojiPanel: View {
                 SearchBar()
                     .environmentObject(sharedState)
                 
-                Button("⚙︎") {
-                    NSApplication.shared.terminate(self)
-                }
-                    .font(.title)
-                    .buttonStyle(PlainButtonStyle())
-                    .foregroundColor(Color(NSColor.textColor))
+                Button(action: {}, label: {
+                    Image(systemName: "gearshape.fill")
+                })
+                .buttonStyle(PlainButtonStyle())
             }
+            .font(.title2)
+            .foregroundColor(Color(NSColor.textColor))
             .padding(.trailing, 8)
             
             ZStack {
