@@ -11,7 +11,10 @@ struct SectionIndexPicker: View {
     @EnvironmentObject var sharedState: SharedState
     
     var sections: [String]
+    
+    #if os(macOS)
     var selectionHandler: () -> Void
+    #endif
 
     var body: some View {
         #if os(iOS)
@@ -40,6 +43,14 @@ struct Blur: UIViewRepresentable {
 
     func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
         uiView.effect = UIBlurEffect(style: style)
+    }
+}
+
+struct SectionIndexPicker_Previews: PreviewProvider {
+    static var previews: some View {
+        let sections = ["Recent", "Smileys & Emotion", "People & Body", "Animals & Nature", "🐨"]
+        SectionIndexPicker(sections: sections)
+            .environmentObject(SharedState())
     }
 }
 #elseif os(macOS)
@@ -97,7 +108,6 @@ struct SegmentedControl<T: Hashable>: NSViewRepresentable {
         }
     }
 }
-#endif
 
 struct SectionIndexPicker_Previews: PreviewProvider {
     static var previews: some View {
@@ -106,3 +116,4 @@ struct SectionIndexPicker_Previews: PreviewProvider {
             .environmentObject(SharedState())
     }
 }
+#endif
