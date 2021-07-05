@@ -143,7 +143,7 @@ struct EmojiPanel: View {
     }
     
     private var sectionPicker: some View {
-        SectionIndexPicker(sections: displayedCategories)
+        SectionIndexPicker(sections: displayedCategories) { categoryUpdatedByOffset = false }
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
             .environmentObject(sharedState)
