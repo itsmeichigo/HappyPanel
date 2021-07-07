@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct ContentView: View {
     @State var selectedEmoji: Emoji?

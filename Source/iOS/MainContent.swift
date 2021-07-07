@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct MainContent: View {
     @EnvironmentObject var sharedState: SharedState

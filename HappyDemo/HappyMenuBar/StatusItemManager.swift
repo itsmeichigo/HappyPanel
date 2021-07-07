@@ -7,6 +7,7 @@
 
 import Cocoa
 import SwiftUI
+import Shared
 
 class StatusItemManager: NSObject {
 

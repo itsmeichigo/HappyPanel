@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct SearchBar: View {
     @EnvironmentObject var sharedState: SharedState

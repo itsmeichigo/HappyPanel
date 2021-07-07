@@ -7,16 +7,23 @@
 
 import SwiftUI
 
-struct EmojiSection<T: Hashable>: View {
-    var title: String
-    var items: [T]
-    var contentKeyPath: KeyPath<T, String>
-    var completionHandler: (T) -> Void
+public struct EmojiSection<T: Hashable>: View {
+    private var title: String
+    private var items: [T]
+    private var contentKeyPath: KeyPath<T, String>
+    private var completionHandler: (T) -> Void
+    
+    public init(title: String, items: [T], contentKeyPath: KeyPath<T, String>, completionHandler: @escaping (T) -> Void) {
+        self.title = title
+        self.items = items
+        self.contentKeyPath = contentKeyPath
+        self.completionHandler = completionHandler
+    }
     
     private let columns: [GridItem] =
              Array(repeating: .init(.flexible()), count: 6)
     
-    var body: some View {
+    public var body: some View {
         Section(header: SectionHeader(title: title)) {
             LazyVGrid(columns: columns) {
                 ForEach(items, id: contentKeyPath) { item in

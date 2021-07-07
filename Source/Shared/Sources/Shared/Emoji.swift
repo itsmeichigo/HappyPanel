@@ -7,31 +7,31 @@
 
 import Foundation
 
-struct Emoji: Decodable, Hashable {
-    let emoji: String
-    let category: String
-    let description: String
-    let aliases: [String]
-    let tags: [String]
+public struct Emoji: Decodable, Hashable {
+    public let emoji: String
+    public let category: String
+    public let description: String
+    public let aliases: [String]
+    public let tags: [String]
 }
 
-final class EmojiStore {
-    let allEmojis: [Emoji]
-    let emojisByCategory: [String: [Emoji]]
+public final class EmojiStore {
+    public let allEmojis: [Emoji]
+    public let emojisByCategory: [String: [Emoji]]
     
-    static let shared = EmojiStore()
+    public static let shared = EmojiStore()
     private static let recentEmojiKey: String = "HappyPanelRecentEmojis"
     private static let itemPerGroup: Int = 7
     
-    init() {
-        guard let path = Bundle.main.path(forResource: "emoji", ofType: "json") else {
+    public init() {
+        guard let url = Bundle.module.url(forResource: "emoji", withExtension: "json") else {
             self.allEmojis = []
             self.emojisByCategory = [:]
             return
         }
         
         do {
-            let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+            let data = try Data(contentsOf: url, options: .mappedIfSafe)
             let decoder = JSONDecoder()
             let list = try decoder.decode([Emoji].self, from: data)
             self.allEmojis = list
@@ -47,7 +47,7 @@ final class EmojiStore {
         self.emojisByCategory = result
     }
     
-    func filteredEmojis(with keyword: String) -> [Emoji] {
+    public func filteredEmojis(with keyword: String) -> [Emoji] {
         let lowercasedEmoji = keyword.lowercased()
         return allEmojis.filter { emoji in
             emoji.description.contains(lowercasedEmoji) ||
@@ -56,7 +56,7 @@ final class EmojiStore {
     }
 }
 
-extension EmojiStore {
+public extension EmojiStore {
     static func systemImageName(for section: String) -> String {
         guard let sectionType = SectionType(rawValue: section) else {
             return "questionmark"
@@ -96,7 +96,7 @@ extension EmojiStore {
     }
 }
 
-enum SectionType: String, CaseIterable {
+public enum SectionType: String, CaseIterable {
     case recent = "Recent"
     case smileys = "Smileys & Emotion"
     case people = "People & Body"
@@ -108,7 +108,7 @@ enum SectionType: String, CaseIterable {
     case symbols = "Symbols"
     case flags = "Flags"
     
-    static let defaultCategories: [SectionType] = SectionType.allCases
+    public static let defaultCategories: [SectionType] = SectionType.allCases
         .filter { $0 != .recent }
 }
 

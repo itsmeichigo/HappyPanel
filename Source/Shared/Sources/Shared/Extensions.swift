@@ -9,14 +9,14 @@ import SwiftUI
 
 #if os(iOS)
 // MARK: Dismiss keyboard
-extension UIApplication {
+public extension UIApplication {
     func endEditing() {
         windows.forEach { $0.endEditing(false) }
     }
 }
 #endif
 
-extension Color {
+public extension Color {
     static var background: Color {
         #if os(iOS)
         return Color(UIColor.systemBackground)

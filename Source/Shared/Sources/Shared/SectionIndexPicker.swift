@@ -7,16 +7,25 @@
 
 import SwiftUI
 
-struct SectionIndexPicker: View {
+public struct SectionIndexPicker: View {
     @EnvironmentObject var sharedState: SharedState
     
-    var sections: [String]
+    private var sections: [String]
     
-    #if os(macOS)
-    var selectionHandler: () -> Void
+    #if os(iOS)
+    public init(sections: [String]) {
+        self.sections = sections
+    }
+    #elseif os(macOS)
+    private var selectionHandler: () -> Void
+    
+    public init(sections: [String], selectionHandler: @escaping () -> Void) {
+        self.sections = sections
+        self.selectionHandler = selectionHandler
+    }
     #endif
 
-    var body: some View {
+    public var body: some View {
         #if os(iOS)
         Picker(selection: $sharedState.currentCategory, label: Text("Section"), content: {
             ForEach(sections, id: \.self) {

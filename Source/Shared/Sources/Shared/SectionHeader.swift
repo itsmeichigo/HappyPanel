@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct SectionHeader: View {
-    let title: String
+public struct SectionHeader: View {
+    public let title: String
     #if os(iOS)
-    let titleFont: Font = .caption
+    public let titleFont: Font = .caption
     #elseif os(macOS)
-    let titleFont: Font = .title3
+    public let titleFont: Font = .title3
     #endif
     
-    var body: some View {
+    public var body: some View {
         #if os(iOS)
         sectionText
         #elseif os(macOS)

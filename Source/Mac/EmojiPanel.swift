@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Shared
 
 struct EmojiPanel: View {
     @EnvironmentObject var sharedState: SharedState
