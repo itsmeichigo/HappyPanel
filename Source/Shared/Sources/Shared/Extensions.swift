@@ -16,3 +16,26 @@ public extension Color {
         #endif
     }
 }
+
+@propertyWrapper
+struct UserDefaultWrapper<Value> {
+    let key: String
+    let defaultValue: Value
+    var container: UserDefaults = .standard
+
+    var wrappedValue: Value {
+        get {
+            return container.object(forKey: key) as? Value ?? defaultValue
+        }
+        set {
+            container.set(newValue, forKey: key)
+        }
+    }
+}
+
+extension UserDefaults {
+    static let happyUserDefaults = UserDefaults(suiteName: "group.com.ichigo.HappyPanel")!
+
+    @UserDefaultWrapper(key: "recent_emojis", defaultValue: [], container: .happyUserDefaults)
+    static var recentEmojis: [String]
+}

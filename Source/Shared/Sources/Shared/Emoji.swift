@@ -20,7 +20,6 @@ public final class EmojiStore {
     public let emojisByCategory: [String: [Emoji]]
     
     public static let shared = EmojiStore()
-    private static let recentEmojiKey: String = "HappyPanelRecentEmojis"
     private static let itemPerGroup: Int = 7
     
     public init() {
@@ -77,22 +76,21 @@ public extension EmojiStore {
     }
     
     static func saveRecentEmoji(_ item: Emoji) {
-        let userDefaults = UserDefaults.standard
         var recentList: [String] = []
-        if let savedList = userDefaults.array(forKey: recentEmojiKey) as? [String] {
+        if !UserDefaults.recentEmojis.isEmpty {
             recentList = Array(
-                savedList
+                UserDefaults.recentEmojis
                     .filter { $0 != item.string }
                     .prefix(itemPerGroup * 3 - 1)
             )
         }
         
         recentList.insert(item.string, at: 0)
-        userDefaults.set(recentList, forKey: recentEmojiKey)
+        UserDefaults.recentEmojis = recentList
     }
     
     static func fetchRecentList() -> [String] {
-        return (UserDefaults.standard.array(forKey: recentEmojiKey) as? [String]) ?? []
+        return UserDefaults.recentEmojis
     }
 }
 
