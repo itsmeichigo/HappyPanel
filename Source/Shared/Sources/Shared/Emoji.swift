@@ -8,7 +8,7 @@
 import Foundation
 
 public struct Emoji: Decodable, Hashable {
-    public let emoji: String
+    public let string: String
     public let category: String
     public let description: String
     public let aliases: [String]
@@ -82,12 +82,12 @@ public extension EmojiStore {
         if let savedList = userDefaults.array(forKey: recentEmojiKey) as? [String] {
             recentList = Array(
                 savedList
-                    .filter { $0 != item.emoji }
+                    .filter { $0 != item.string }
                     .prefix(itemPerGroup * 3 - 1)
             )
         }
         
-        recentList.insert(item.emoji, at: 0)
+        recentList.insert(item.string, at: 0)
         userDefaults.set(recentList, forKey: recentEmojiKey)
     }
     

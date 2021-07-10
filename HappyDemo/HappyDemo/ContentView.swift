@@ -20,7 +20,7 @@ struct ContentView: View {
                     .font(.largeTitle)
                 
                 selectedEmoji.map {
-                    Text($0.emoji)
+                    Text($0.string)
                         .font(Font.system(size: 40))
                 }
                 

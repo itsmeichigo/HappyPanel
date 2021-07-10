@@ -72,7 +72,7 @@ extension StatusItemManager: NSPopoverDelegate {
         guard let emoji = selectedEmoji else { return }
         
         let source = """
-            set the clipboard to "\(emoji.emoji)"
+            set the clipboard to "\(emoji.string)"
             tell application "System Events" to keystroke "v" using command down
         """
         

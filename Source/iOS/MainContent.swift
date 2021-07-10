@@ -60,7 +60,7 @@ struct MainContent: View {
                             title: SectionType.recent.rawValue,
                             items: EmojiStore.fetchRecentList(),
                             contentKeyPath: \.self) { emoji in
-                            guard let item = emojiStore.allEmojis.first(where: { $0.emoji == emoji }) else { return }
+                            guard let item = emojiStore.allEmojis.first(where: { $0.string == emoji }) else { return }
                             self.sharedState.selectedEmoji = item
                         }
                         .id(SectionType.recent.rawValue)
@@ -70,7 +70,7 @@ struct MainContent: View {
                         EmojiSection(
                             title: category,
                             items: emojiStore.emojisByCategory[category]!,
-                            contentKeyPath: \.emoji) {
+                            contentKeyPath: \.string) {
                             self.sharedState.selectedEmoji = $0
                         }
                     }
@@ -105,7 +105,7 @@ struct MainContent: View {
                     EmojiSection(
                         title: "Search Results",
                         items: emojiStore.filteredEmojis(with: sharedState.keyword),
-                        contentKeyPath: \.emoji) {
+                        contentKeyPath: \.string) {
                         self.sharedState.selectedEmoji = $0
                     }
                     .background(Color.background)

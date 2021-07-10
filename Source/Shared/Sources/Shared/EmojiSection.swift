@@ -47,7 +47,7 @@ struct EmojiSection_Previews: PreviewProvider {
         let testItems = Array(store.allEmojis.prefix(12))
         EmojiSection(title: "Test",
                      items: testItems,
-                     contentKeyPath: \.emoji,
+                     contentKeyPath: \.string,
                      completionHandler: { _ in })
     }
 }
