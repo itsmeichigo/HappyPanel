@@ -10,12 +10,14 @@ import Shared
 
 struct SearchBar: View {
     @EnvironmentObject var sharedState: SharedState
+    @ObservedObject private var settings = HappySettings.shared
     
     var body: some View {
         HStack {
             Image(systemName: "magnifyingglass")
                 .padding(.leading, 8)
-            TextField("Search emoji", text: $sharedState.keyword)
+            TextField(settings.showingKaomojis ? "Search kaomojis" : "Search emojis",
+                      text: $sharedState.keyword)
                 .textFieldStyle(PlainTextFieldStyle())
         }
         .frame(height: 44)

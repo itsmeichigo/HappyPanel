@@ -9,48 +9,67 @@ import Foundation
 
 public struct Emoji: Decodable, Hashable {
     public let string: String
-    public let category: String
-    public let description: String
-    public let aliases: [String]
+    public let category: String?
+    public let description: String?
+    public let aliases: [String]?
     public let tags: [String]
+}
+
+private extension Emoji {
+    static func parse(from fileURL: URL) -> [Emoji] {
+        do {
+            let data = try Data(contentsOf: fileURL, options: .mappedIfSafe)
+            let decoder = JSONDecoder()
+            let list = try decoder.decode([Emoji].self, from: data)
+            return list
+        } catch {
+            return []
+        }
+    }
 }
 
 public final class EmojiStore {
     public let allEmojis: [Emoji]
+    public let allKaomojis: [Emoji]
     public let emojisByCategory: [String: [Emoji]]
+    public let kaomojisByTag: [String: [Emoji]]
     
     public static let shared = EmojiStore()
     private static let itemPerGroup: Int = 7
     
     public init() {
-        guard let url = Bundle.module.url(forResource: "emoji", withExtension: "json") else {
+        guard let emojiURL = Bundle.module.url(forResource: "emoji", withExtension: "json"),
+              let kaomojiURL = Bundle.module.url(forResource: "kaomoji", withExtension: "json") else {
             self.allEmojis = []
+            self.allKaomojis = []
             self.emojisByCategory = [:]
+            self.kaomojisByTag = [:]
             return
         }
         
-        do {
-            let data = try Data(contentsOf: url, options: .mappedIfSafe)
-            let decoder = JSONDecoder()
-            let list = try decoder.decode([Emoji].self, from: data)
-            self.allEmojis = list
-        } catch {
-            self.allEmojis = []
-        }
-        
+        self.allEmojis = Emoji.parse(from: emojiURL)
+        self.allKaomojis = Emoji.parse(from: kaomojiURL)
         
         var result: [String: [Emoji]] = [:]
         for category in SectionType.defaultCategories {
             result[category.rawValue] = allEmojis.filter { $0.category == category.rawValue }
         }
         self.emojisByCategory = result
+        
+        var kaomojiResult: [String: [Emoji]] = [:]
+        for tag in KaomojiTags.allCases {
+            kaomojiResult[tag.rawValue] = allKaomojis.filter { $0.tags.contains(tag.rawValue) }
+        }
+        self.kaomojisByTag = kaomojiResult
     }
     
     public func filteredEmojis(with keyword: String) -> [Emoji] {
         let lowercasedEmoji = keyword.lowercased()
-        return allEmojis.filter { emoji in
-            emoji.description.contains(lowercasedEmoji) ||
-            emoji.tags.first { $0.contains(lowercasedEmoji) } != nil
+        let list = UserDefaults.showingKaomojis ? allKaomojis : allEmojis
+        return list.filter { emoji in
+            emoji.description?.contains(lowercasedEmoji) == true ||
+            emoji.tags.first { $0.contains(lowercasedEmoji) } != nil ||
+            emoji.aliases?.first { $0.contains(lowercasedEmoji) } != nil
         }
     }
 }
@@ -77,20 +96,25 @@ public extension EmojiStore {
     
     static func saveRecentEmoji(_ item: Emoji) {
         var recentList: [String] = []
-        if !UserDefaults.recentEmojis.isEmpty {
+        let cachedList = fetchRecentList()
+        if !cachedList.isEmpty {
             recentList = Array(
-                UserDefaults.recentEmojis
+                cachedList
                     .filter { $0 != item.string }
                     .prefix(itemPerGroup * 3 - 1)
             )
         }
         
         recentList.insert(item.string, at: 0)
-        UserDefaults.recentEmojis = recentList
+        if UserDefaults.showingKaomojis {
+            UserDefaults.recentKaomojis = recentList
+        } else {
+            UserDefaults.recentEmojis = recentList
+        }
     }
     
     static func fetchRecentList() -> [String] {
-        return UserDefaults.recentEmojis
+        return UserDefaults.showingKaomojis ? UserDefaults.recentKaomojis : UserDefaults.recentEmojis
     }
 }
 
@@ -110,3 +134,13 @@ public enum SectionType: String, CaseIterable {
         .filter { $0 != .recent }
 }
 
+public enum KaomojiTags: String, CaseIterable {
+    case animals, angry, bear, bird, cat, confused, crazy, cry,
+         dance, dead, dog, embarassed, evil, excited, fun,
+         happy, hide, hug, hurt, kiss, laugh, love,
+         monkey, music, pig, rabbit, run, sad, scared,
+         sleep, sorry, smug, stare, surprised, surrender,
+         think, troll, wave, whatever, wink, worried, write
+    case seaCreatures = "sea creatures"
+    case tableFlip = "table flip"
+}

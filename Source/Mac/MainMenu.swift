@@ -6,15 +6,26 @@
 //
 
 import LaunchAtLogin
+import Shared
 import SwiftUI
 
 struct MainMenu: View {
-    
+    @ObservedObject private var settings = HappySettings.shared
     @State private var shouldLaunchAtLogin = LaunchAtLogin.isEnabled
     
     var body: some View {
         Menu("") {
             Section {
+                Button(action: {
+                    settings.showingKaomojis.toggle()
+                }, label: {
+                    HStack {
+                        if settings.showingKaomojis {
+                            Image(systemName: "checkmark")
+                        }
+                        Text("Kaomoji Mode")
+                    }
+                })
                 Button(action: {
                     LaunchAtLogin.isEnabled.toggle()
                     shouldLaunchAtLogin.toggle()

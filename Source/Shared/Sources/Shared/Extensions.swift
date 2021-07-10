@@ -5,6 +5,7 @@
 //  Created by Huong Do on 8/30/20.
 //
 
+import Combine
 import SwiftUI
 
 public extension Color {
@@ -18,12 +19,12 @@ public extension Color {
 }
 
 @propertyWrapper
-struct UserDefaultWrapper<Value> {
+public struct UserDefaultWrapper<Value> {
     let key: String
     let defaultValue: Value
     var container: UserDefaults = .standard
 
-    var wrappedValue: Value {
+    public var wrappedValue: Value {
         get {
             return container.object(forKey: key) as? Value ?? defaultValue
         }
@@ -38,4 +39,24 @@ extension UserDefaults {
 
     @UserDefaultWrapper(key: "recent_emojis", defaultValue: [], container: .happyUserDefaults)
     static var recentEmojis: [String]
+    
+    @UserDefaultWrapper(key: "recent_kaomojis", defaultValue: [], container: .happyUserDefaults)
+    static var recentKaomojis: [String]
+    
+    @UserDefaultWrapper(key: "showing_kaomojis", defaultValue: false, container: .happyUserDefaults)
+    static var showingKaomojis: Bool
+}
+
+public class HappySettings: ObservableObject {
+    @Published public var showingKaomojis: Bool {
+        didSet {
+            UserDefaults.showingKaomojis = showingKaomojis
+        }
+    }
+    
+    public static let shared: HappySettings = .init()
+    
+    public init() {
+        self.showingKaomojis = UserDefaults.showingKaomojis
+    }
 }

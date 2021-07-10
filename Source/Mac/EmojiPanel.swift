@@ -15,6 +15,7 @@ struct EmojiPanel: View {
     var selectionHandler: (Emoji)->Void
     
     @State private var categoryUpdatedByOffset = false
+    @ObservedObject private var settings = HappySettings.shared
     
     init(emojiStore: EmojiStore, selectionHandler: @escaping (Emoji)->Void) {
         self.emojiStore = emojiStore
@@ -34,20 +35,52 @@ struct EmojiPanel: View {
             .padding(.trailing, 8)
             
             ZStack {
-                self.emojiSections
+                if settings.showingKaomojis {
+                    self.kaomojiSections
+                } else {
+                    self.emojiSections
+                }
                 
                 if sharedState.isSearching || !sharedState.keyword.isEmpty {
                     self.emojiResults
                 }
             }
             
-            if !sharedState.isSearching, sharedState.keyword.isEmpty {
+            if !sharedState.isSearching, sharedState.keyword.isEmpty,
+               !settings.showingKaomojis {
                 self.sectionPicker
             }
         }
         .background(Color.background)
         .cornerRadius(8)
         .edgesIgnoringSafeArea(.bottom)
+    }
+    
+    private var recentSection: some View {
+        EmojiSection(
+            title: SectionType.recent.rawValue,
+            items: EmojiStore.fetchRecentList(),
+            contentKeyPath: \.self) { emoji in
+            guard let item = emojiStore.allEmojis.first(where: { $0.string == emoji }) else { return }
+            self.selectionHandler(item)
+        }
+    }
+    
+    private var kaomojiSections: some View {
+        List {
+            if !EmojiStore.fetchRecentList().isEmpty {
+                recentSection
+            }
+            
+            ForEach(KaomojiTags.allCases.map { $0.rawValue }, id: \.self) { tag in
+                EmojiSection(
+                    title: tag.capitalized,
+                    items: emojiStore.kaomojisByTag[tag]!,
+                    contentKeyPath: \.string) {
+                    self.selectionHandler($0)
+                }
+            }
+        }
     }
     
     private var emojiSections: some View {
@@ -57,28 +90,16 @@ struct EmojiPanel: View {
                     Group {
                         if !EmojiStore.fetchRecentList().isEmpty {
                             let category = SectionType.recent.rawValue
-                            EmojiSection(
-                                title: SectionType.recent.rawValue,
-                                items: EmojiStore.fetchRecentList(),
-                                contentKeyPath: \.self) { emoji in
-                                guard let item = emojiStore.allEmojis.first(where: { $0.string == emoji }) else { return }
-                                self.selectionHandler(item)
-                            }
-                            .id(category)
-                            .transformAnchorPreference(key: OffsetKey.self, value: .bounds) {
-                                $0.append(OffsetViewFrame(id: category, frame: geometry[$1]))
-                            }
-                            .onPreferenceChange(OffsetKey.self) {
-                                guard sharedState.currentCategory != category else {
-                                    return
-                                }
-                                if let item = $0.filter({ $0.id == category }).last,
-                                   item.frame.origin.y <= 0,
-                                   abs(item.frame.origin.y) < abs(item.frame.size.height) {
-                                    categoryUpdatedByOffset = true
-                                    sharedState.currentCategory = category
-                                }
-                            }
+                            recentSection
+                                .id(category)
+                                .observeOffset(
+                                    for: category,
+                                    geometryProxy: geometry,
+                                    sharedState: sharedState,
+                                    updateHandler: {
+                                        categoryUpdatedByOffset = true
+                                    }
+                                )
                         }
                         
                         ForEach(SectionType.defaultCategories.map { $0.rawValue }, id: \.self) { category in
@@ -88,20 +109,14 @@ struct EmojiPanel: View {
                                 contentKeyPath: \.string) {
                                 self.selectionHandler($0)
                             }
-                            .transformAnchorPreference(key: OffsetKey.self, value: .bounds) {
-                                $0.append(OffsetViewFrame(id: category, frame: geometry[$1]))
-                            }
-                            .onPreferenceChange(OffsetKey.self) {
-                                guard sharedState.currentCategory != category else {
-                                    return
-                                }
-                                if let item = $0.filter({ $0.id == category }).last,
-                                   item.frame.origin.y <= 0,
-                                   abs(item.frame.origin.y) < abs(item.frame.size.height) {
+                            .observeOffset(
+                                for: category,
+                                geometryProxy: geometry,
+                                sharedState: sharedState,
+                                updateHandler: {
                                     categoryUpdatedByOffset = true
-                                    sharedState.currentCategory = category
                                 }
-                            }
+                            )
                         }
                     }
                     .onChange(of: sharedState.currentCategory) { target in
@@ -122,7 +137,7 @@ struct EmojiPanel: View {
             } else if emojiStore.filteredEmojis(with: sharedState.keyword).isEmpty {
                 
                 VStack {
-                    Text("No emoji results found for \"\(sharedState.keyword)\"")
+                    Text("No \(settings.showingKaomojis ? "kaomoji" : "emoji") found for \"\(sharedState.keyword)\"")
                         .foregroundColor(.gray)
                     Spacer()
                 }
@@ -163,25 +178,5 @@ struct EmojiPanel_Previews: PreviewProvider {
         EmojiPanel(emojiStore: EmojiStore.shared,
                    selectionHandler: { _ in })
             .environmentObject(SharedState())
-    }
-}
-
-struct OffsetViewFrame: Equatable {
-    let id: String
-    let frame: CGRect
-
-    static func == (lhs: OffsetViewFrame, rhs: OffsetViewFrame) -> Bool {
-        lhs.id == rhs.id && lhs.frame == rhs.frame
-    }
-}
-
-struct OffsetKey: PreferenceKey {
-    typealias Value = [OffsetViewFrame] // The list of view frame changes in a View tree.
-
-    static var defaultValue: [OffsetViewFrame] = []
-
-    /// When traversing the view tree, Swift UI will use this function to collect all view frame changes.
-    static func reduce(value: inout [OffsetViewFrame], nextValue: () -> [OffsetViewFrame]) {
-        value.append(contentsOf: nextValue())
     }
 }
