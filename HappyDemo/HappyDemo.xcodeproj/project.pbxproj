@@ -42,6 +42,7 @@
 		2C02B18A2695D99F00B5AA91 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Shared; path = ../Source/Shared; sourceTree = "<group>"; };
 		2C02B19026996E9A00B5AA91 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2C02B19226998FFA00B5AA91 /* OffsetObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObserver.swift; sourceTree = "<group>"; };
+		2C02B194269AF4BE00B5AA91 /* HappyMenuBarRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyMenuBarRelease.entitlements; sourceTree = "<group>"; };
 		DE33430524F9675F007722EF /* HappyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE33430824F9675F007722EF /* HappyDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyDemoApp.swift; sourceTree = "<group>"; };
 		DE33430A24F9675F007722EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -165,6 +166,7 @@
 		DEDF40AC25076D2C00389803 /* HappyMenuBar */ = {
 			isa = PBXGroup;
 			children = (
+				2C02B194269AF4BE00B5AA91 /* HappyMenuBarRelease.entitlements */,
 				2C02B1832695D96600B5AA91 /* Mac */,
 				DEDF40AD25076D2C00389803 /* AppDelegate.swift */,
 				DEDF40C325076DDD00389803 /* StatusItemManager.swift */,
@@ -518,11 +520,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HappyMenuBar/HappyMenuBar.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyMenuBar/Preview Content\"";
 				DEVELOPMENT_TEAM = S98YJ3DNTA;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HappyMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -531,7 +534,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.HappyMenuBar;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HappyMenuBar;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
@@ -542,12 +545,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = HappyMenuBar/HappyMenuBar.entitlements;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_ENTITLEMENTS = HappyMenuBar/HappyMenuBarRelease.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyMenuBar/Preview Content\"";
 				DEVELOPMENT_TEAM = S98YJ3DNTA;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = HappyMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
