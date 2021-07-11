@@ -61,7 +61,8 @@ struct EmojiPanel: View {
             title: SectionType.recent.rawValue,
             items: EmojiStore.fetchRecentList(),
             contentKeyPath: \.self) { emoji in
-            guard let item = emojiStore.allEmojis.first(where: { $0.string == emoji }) else { return }
+            let list = settings.showingKaomojis ? emojiStore.allKaomojis : emojiStore.allEmojis
+            guard let item = list.first(where: { $0.string == emoji }) else { return }
             self.selectionHandler(item)
         }
     }
