@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct EmojiSection<T: Hashable>: View {
-    private var title: String
+    private var title: String?
     private var items: [T]
     private var contentKeyPath: KeyPath<T, String>
     private var completionHandler: (T) -> Void
@@ -21,7 +21,7 @@ public struct EmojiSection<T: Hashable>: View {
         UserDefaults.showingKaomojis ? 3 : 6
     }
     
-    public init(title: String, items: [T], contentKeyPath: KeyPath<T, String>, completionHandler: @escaping (T) -> Void) {
+    public init(title: String? = nil, items: [T], contentKeyPath: KeyPath<T, String>, completionHandler: @escaping (T) -> Void) {
         self.title = title
         self.items = items
         self.contentKeyPath = contentKeyPath
@@ -29,21 +29,29 @@ public struct EmojiSection<T: Hashable>: View {
     }
 
     public var body: some View {
-        Section(header: SectionHeader(title: title)) {
-            LazyVGrid(columns: columns) {
-                ForEach(items, id: contentKeyPath) { item in
-                    Button(action: {
-                        completionHandler(item)
-                    }) {
-                        if UserDefaults.showingKaomojis {
-                            kaomojiItem(content: item[keyPath: contentKeyPath])
-                        } else {
-                            emojiItem(content: item[keyPath: contentKeyPath])
-                        }
+        if let title = title {
+            Section(header: SectionHeader(title: title)) {
+                grid
+            }
+        } else {
+            grid
+        }
+    }
+    
+    private var grid: some View {
+        LazyVGrid(columns: columns) {
+            ForEach(items, id: contentKeyPath) { item in
+                Button(action: {
+                    completionHandler(item)
+                }) {
+                    if UserDefaults.showingKaomojis {
+                        kaomojiItem(content: item[keyPath: contentKeyPath])
+                    } else {
+                        emojiItem(content: item[keyPath: contentKeyPath])
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .padding(4)
                 }
+                .buttonStyle(PlainButtonStyle())
+                .padding(4)
             }
         }
     }

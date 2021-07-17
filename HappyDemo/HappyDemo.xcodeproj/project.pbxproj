@@ -19,6 +19,7 @@
 		2C02B18F2695DABA00B5AA91 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 2C02B18E2695DABA00B5AA91 /* Shared */; };
 		2C02B19126996E9A00B5AA91 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02B19026996E9A00B5AA91 /* Extensions.swift */; };
 		2C02B19326998FFA00B5AA91 /* OffsetObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02B19226998FFA00B5AA91 /* OffsetObserver.swift */; };
+		2C02B19626A2BFDC00B5AA91 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C02B19526A2BFDC00B5AA91 /* TagButton.swift */; };
 		DE33430924F9675F007722EF /* HappyDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33430824F9675F007722EF /* HappyDemoApp.swift */; };
 		DE33430B24F9675F007722EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE33430A24F9675F007722EF /* ContentView.swift */; };
 		DE33430D24F96762007722EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE33430C24F96762007722EF /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		2C02B19026996E9A00B5AA91 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2C02B19226998FFA00B5AA91 /* OffsetObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffsetObserver.swift; sourceTree = "<group>"; };
 		2C02B194269AF4BE00B5AA91 /* HappyMenuBarRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HappyMenuBarRelease.entitlements; sourceTree = "<group>"; };
+		2C02B19526A2BFDC00B5AA91 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
 		DE33430524F9675F007722EF /* HappyDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HappyDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE33430824F9675F007722EF /* HappyDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyDemoApp.swift; sourceTree = "<group>"; };
 		DE33430A24F9675F007722EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				2C02B1852695D96600B5AA91 /* EmojiPanel.swift */,
 				2C02B1862695D96600B5AA91 /* SearchBar.swift */,
 				2C02B19226998FFA00B5AA91 /* OffsetObserver.swift */,
+				2C02B19526A2BFDC00B5AA91 /* TagButton.swift */,
 			);
 			name = Mac;
 			path = ../../Source/Mac;
@@ -340,6 +343,7 @@
 				DEDF40C425076DDD00389803 /* StatusItemManager.swift in Sources */,
 				DEDF40AE25076D2C00389803 /* AppDelegate.swift in Sources */,
 				2C02B1892695D96600B5AA91 /* SearchBar.swift in Sources */,
+				2C02B19626A2BFDC00B5AA91 /* TagButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,8 +550,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HappyMenuBar/HappyMenuBarRelease.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"HappyMenuBar/Preview Content\"";
 				DEVELOPMENT_TEAM = S98YJ3DNTA;
@@ -561,7 +565,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ichigo.HappyMenuBar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Happy Menu Bar Developer ID";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 5.0;
 			};

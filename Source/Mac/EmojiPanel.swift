@@ -17,6 +17,8 @@ struct EmojiPanel: View {
     @State private var categoryUpdatedByOffset = false
     @ObservedObject private var settings = HappySettings.shared
     
+    @State private var currentKaomojiTag: String?
+    
     init(emojiStore: EmojiStore, selectionHandler: @escaping (Emoji)->Void) {
         self.emojiStore = emojiStore
         self.selectionHandler = selectionHandler
@@ -56,31 +58,52 @@ struct EmojiPanel: View {
         .edgesIgnoringSafeArea(.bottom)
     }
     
-    private var recentSection: some View {
+    private var kaomojiSections: some View {
+        VStack(spacing: 0) {
+            ScrollView(.vertical) {
+                if let tag = currentKaomojiTag {
+                    EmojiSection(
+                        items: emojiStore.kaomojisByTag[tag]!,
+                        contentKeyPath: \.string) {
+                        self.selectionHandler($0)
+                    }
+                } else {
+                    EmojiSection(
+                        items: EmojiStore.fetchRecentList(),
+                        contentKeyPath: \.self) { emoji in
+                        guard let item = emojiStore.allKaomojis.first(where: { $0.string == emoji }) else { return }
+                        self.selectionHandler(item)
+                    }
+                }
+            }
+            .padding(.vertical, 8)
+            .background(Color(NSColor.controlBackgroundColor))
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    TagButton(title: "Recent", selectionHandler: {
+                        currentKaomojiTag = nil
+                    }, isSelected: currentKaomojiTag == nil)
+                    
+                    ForEach(KaomojiTags.allCases.map { $0.rawValue }, id: \.self) { tag in
+                        TagButton(title: tag, selectionHandler: {
+                            currentKaomojiTag = tag
+                        }, isSelected: currentKaomojiTag == tag)
+                    }
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 8)
+            }
+        }
+    }
+    
+    private var recentEmojiSection: some View {
         EmojiSection(
             title: SectionType.recent.rawValue,
             items: EmojiStore.fetchRecentList(),
             contentKeyPath: \.self) { emoji in
-            let list = settings.showingKaomojis ? emojiStore.allKaomojis : emojiStore.allEmojis
-            guard let item = list.first(where: { $0.string == emoji }) else { return }
+            guard let item = emojiStore.allEmojis.first(where: { $0.string == emoji }) else { return }
             self.selectionHandler(item)
-        }
-    }
-    
-    private var kaomojiSections: some View {
-        List {
-            if !EmojiStore.fetchRecentList().isEmpty {
-                recentSection
-            }
-            
-            ForEach(KaomojiTags.allCases.map { $0.rawValue }, id: \.self) { tag in
-                EmojiSection(
-                    title: tag.capitalized,
-                    items: emojiStore.kaomojisByTag[tag]!,
-                    contentKeyPath: \.string) {
-                    self.selectionHandler($0)
-                }
-            }
         }
     }
     
@@ -91,7 +114,7 @@ struct EmojiPanel: View {
                     Group {
                         if !EmojiStore.fetchRecentList().isEmpty {
                             let category = SectionType.recent.rawValue
-                            recentSection
+                            recentEmojiSection
                                 .id(category)
                                 .observeOffset(
                                     for: category,
