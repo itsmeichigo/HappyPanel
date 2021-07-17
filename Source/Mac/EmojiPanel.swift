@@ -86,7 +86,7 @@ struct EmojiPanel: View {
                     }, isSelected: currentKaomojiTag == nil)
                     
                     ForEach(KaomojiTags.allCases.map { $0.rawValue }, id: \.self) { tag in
-                        TagButton(title: tag, selectionHandler: {
+                        TagButton(title: tag.capitalized, selectionHandler: {
                             currentKaomojiTag = tag
                         }, isSelected: currentKaomojiTag == tag)
                     }
