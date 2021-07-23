@@ -7,26 +7,31 @@
 
 import SwiftUI
 
-struct TagButton: View {
-    let title: String
-    let selectionHandler: () -> Void
+struct TagButton: ViewModifier {    
     let isSelected: Bool
     
-    var body: some View {
-        Button(action: selectionHandler, label: {
-            Text(title)
-                .foregroundColor(isSelected ? .white : Color(NSColor.controlTextColor))
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(isSelected ? Color(NSColor.controlAccentColor) : Color.background)
-                .clipShape(Capsule())
-        })
+    func body(content: Content) -> some View {
+        content
+        .foregroundColor(isSelected ? .white : Color(NSColor.controlTextColor).opacity(0.5))
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(isSelected ? Color(NSColor.controlAccentColor) : Color.background)
+        .clipShape(Capsule())
         .buttonStyle(PlainButtonStyle())
+    }
+}
+
+extension Button {
+    func makeTag(isSelected: Bool) -> some View {
+        self.modifier(TagButton(isSelected: isSelected))
     }
 }
 
 struct TagButton_Previews: PreviewProvider {
     static var previews: some View {
-        TagButton(title: "Recent", selectionHandler: {}, isSelected: false)
+        Button(action: {}, label: {
+            Text("Text")
+        })
+        .makeTag(isSelected: true)
     }
 }

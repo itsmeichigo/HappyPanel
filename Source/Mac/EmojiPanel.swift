@@ -81,14 +81,20 @@ struct EmojiPanel: View {
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    TagButton(title: "Recent", selectionHandler: {
+                    Button(action: {
                         currentKaomojiTag = nil
-                    }, isSelected: currentKaomojiTag == nil)
+                    }, label: {
+                        Image(systemName: "clock")
+                    })
+                    .makeTag(isSelected: currentKaomojiTag == nil)
                     
                     ForEach(KaomojiTags.allCases.map { $0.rawValue }, id: \.self) { tag in
-                        TagButton(title: tag.capitalized, selectionHandler: {
+                        Button(action: {
                             currentKaomojiTag = tag
-                        }, isSelected: currentKaomojiTag == tag)
+                        }, label: {
+                            Text("#\(tag)")
+                        })
+                        .makeTag(isSelected: currentKaomojiTag == tag)
                     }
                 }
                 .padding(.horizontal)
