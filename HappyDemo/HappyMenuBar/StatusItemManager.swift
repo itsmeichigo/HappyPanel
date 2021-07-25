@@ -70,7 +70,9 @@ class StatusItemManager: NSObject {
 extension StatusItemManager: NSPopoverDelegate {
     func popoverDidClose(_ notification: Notification) {
         guard let emoji = selectedEmoji else { return }
-        
+
+        NSApplication.shared.deactivate()
+
         let source = """
             set the clipboard to "\(emoji.string)"
             tell application "System Events" to keystroke "v" using command down
